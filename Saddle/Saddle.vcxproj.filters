@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Saddle">
+      <UniqueIdentifier>{72078FD0-5EA9-B9A6-4764-CDFA33A540F7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Saddle\Logging">
+      <UniqueIdentifier>{083ADF7A-F407-D380-DD9B-43A7C908AFE5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Saddle.h" />
+    <ClInclude Include="src\Saddle\Application.h">
+      <Filter>Saddle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Saddle\Logging\Loggable.h">
+      <Filter>Saddle\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Saddle\SaddleApi.h">
+      <Filter>Saddle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Saddle\Start.h">
+      <Filter>Saddle</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Saddle\Application.cpp">
+      <Filter>Saddle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Saddle\Logging\Loggable.cpp">
+      <Filter>Saddle\Logging</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
