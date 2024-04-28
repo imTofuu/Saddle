@@ -102,6 +102,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Saddle.h" />
+    <ClInclude Include="src\SaddleLogging.h" />
     <ClInclude Include="src\Saddle\Application.h" />
     <ClInclude Include="src\Saddle\Logging\Loggable.h" />
     <ClInclude Include="src\Saddle\Logging\Logger.h" />
@@ -110,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Saddle\Application.cpp" />
+    <ClCompile Include="src\Saddle\Logging\Logger.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

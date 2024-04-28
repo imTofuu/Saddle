@@ -22,13 +22,13 @@
     <ClInclude Include="src\Saddle\Start.h">
       <Filter>Saddle</Filter>
     </ClInclude>
+    <ClInclude Include="src\Saddle\Logging\Logger.h" />
+    <ClInclude Include="src\SaddleLogging.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Saddle\Application.cpp">
       <Filter>Saddle</Filter>
     </ClCompile>
-    <ClCompile Include="src\Saddle\Logging\Loggable.cpp">
-      <Filter>Saddle\Logging</Filter>
-    </ClCompile>
+    <ClCompile Include="src\Saddle\Logging\Logger.cpp" />
   </ItemGroup>
 </Project>

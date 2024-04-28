@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "Logging/Logger.h"
 
 namespace Saddle {
 
@@ -7,6 +8,8 @@ namespace Saddle {
 	Application::~Application() {}
 
 	void Application::Run() {
+		Logger::initLoggers();
+
 		while (true);
 	}
 }

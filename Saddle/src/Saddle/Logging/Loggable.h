@@ -8,7 +8,7 @@ namespace Saddle {
 	{
 	public:
 
-		virtual std::string toString() const = 0;
+		virtual inline std::string toString() const = 0;
 
 	protected:
 		Loggable() {}

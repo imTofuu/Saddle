@@ -1,8 +1,10 @@
 #pragma once
 
 #include <SaddleApi.h>
+#include "Loggable.h"
+
 #include <string>
-#include <stdio.h>
+#include <iostream>
 
 namespace Saddle {
 	class SDL_API Logger {
@@ -11,21 +13,24 @@ namespace Saddle {
 			INFO,
 			WARN,
 			ERROR
-		}
+		};
 
-		Logger(std::string alias) { this->alias = alias; }
+		~Logger() { delete alias; }
 
 		static void initLoggers();
 
 		static const Logger& getCoreLogger() { return *coreLogger; }
 		static const Logger& getClientLogger() { return *clientLogger; }
 
-		std::string getAlias();
+		std::string& getAlias() const { return *alias; }
 
 		void log(std::string message, Severity severity) const;
+		void log(std::string message, Severity severity, const Loggable& loggables...) const;
 
 	private:
-		std::string alias;
+		Logger(std::string alias) { this->alias = new std::string(alias); }
+
+		std::string* alias;
 
 		static Logger* coreLogger;
 		static Logger* clientLogger;
