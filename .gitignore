@@ -4,3 +4,7 @@ bin-int/
 **.sln
 **.vcxproj
 **.vcxproj.**
+**.bat
+premake5.lua
+Run.filters
+Run.user

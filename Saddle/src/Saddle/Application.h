@@ -4,8 +4,7 @@
 
 namespace Saddle {
 
-	class SDL_API Application
-	{
+	class SDL_API Application {
 	public:
 		Application();
 		virtual ~Application();
@@ -13,6 +12,6 @@ namespace Saddle {
 		void Run();
 	};
 
-	Application& createApplication();
+	Application* createApplication();
 
 }

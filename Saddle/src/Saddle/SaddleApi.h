@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef SDL_PLTFRM_WINDOWS
+#ifdef SDL_PLATFORM_WINDOWS
 	#ifdef SDL_BUILD_DLL
 		#define SDL_API __declspec(dllexport)
 	#else

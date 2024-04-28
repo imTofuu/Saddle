@@ -6,6 +6,6 @@ public:
 	~RunEnv() {}
 };
 
-Saddle::Application& Saddle::createApplication() {
-	return *(new RunEnv());
+Saddle::Application* Saddle::createApplication() {
+	return new RunEnv();
 }
