@@ -10,6 +10,7 @@ namespace Saddle {
 	class SDL_API Logger {
 	public:
 		enum Severity {
+			DEBUG,
 			INFO,
 			WARN,
 			ERROR

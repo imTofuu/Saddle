@@ -59,7 +59,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>SDL_PLATFORM_WINDOWS;SDL_BUILD_DLL;SDL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src\Saddle;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src\Global;src\util;src\Saddle\Objects;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -80,7 +80,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>SDL_PLATFORM_WINDOWS;SDL_BUILD_DLL;SDL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src\Saddle;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src\Global;src\util;src\Saddle\Objects;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -101,17 +101,27 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Global\SaddleApi.h" />
+    <ClInclude Include="src\Global\SaddleComponents.h" />
+    <ClInclude Include="src\Global\SaddleLogging.h" />
+    <ClInclude Include="src\Global\SaddleObjects.h" />
     <ClInclude Include="src\Saddle.h" />
     <ClInclude Include="src\Saddle\Application.h" />
     <ClInclude Include="src\Saddle\Logging\Loggable.h" />
     <ClInclude Include="src\Saddle\Logging\Logger.h" />
-    <ClInclude Include="src\Saddle\SaddleApi.h" />
+    <ClInclude Include="src\Saddle\Objects\Component.h" />
+    <ClInclude Include="src\Saddle\Objects\Components\Transform.h" />
+    <ClInclude Include="src\Saddle\Objects\Object.h" />
+    <ClInclude Include="src\Saddle\Scenes\Scene.h" />
     <ClInclude Include="src\Saddle\Start.h" />
-    <ClInclude Include="src\SaddleLogging.h" />
+    <ClInclude Include="src\util\Vector3.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Saddle\Application.cpp" />
     <ClCompile Include="src\Saddle\Logging\Logger.cpp" />
+    <ClCompile Include="src\Saddle\Objects\Component.cpp" />
+    <ClCompile Include="src\Saddle\Objects\Object.cpp" />
+    <ClCompile Include="src\Saddle\Scenes\Scene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

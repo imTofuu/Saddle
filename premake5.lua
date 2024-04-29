@@ -24,7 +24,9 @@ project "Saddle"
 		}
 
 		includedirs {
-			"Saddle/src/Saddle"
+			"Saddle/src/Global",
+			"Saddle/src/util",
+			"Saddle/src/Saddle/Objects"
 		}
 
 		filter "system:windows"

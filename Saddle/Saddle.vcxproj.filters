@@ -1,14 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="Global">
+      <UniqueIdentifier>{B62B5EB5-A2CD-888B-8B88-9CDF77C90FDC}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Saddle">
       <UniqueIdentifier>{72078FD0-5EA9-B9A6-4764-CDFA33A540F7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Saddle\Logging">
       <UniqueIdentifier>{083ADF7A-F407-D380-DD9B-43A7C908AFE5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Saddle\Objects">
+      <UniqueIdentifier>{2BF8AF43-17C6-A349-005A-1470ECC67FAE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Saddle\Objects\Components">
+      <UniqueIdentifier>{608CD290-CC4E-061B-15FF-94A78100DFF8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Saddle\Scenes">
+      <UniqueIdentifier>{620498A6-CEC4-13DD-97FF-5C5A037F58B9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{43339F7C-2F6A-A00D-D856-8610C46C1C0F}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Global\SaddleApi.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Global\SaddleComponents.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Global\SaddleLogging.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Global\SaddleObjects.h">
+      <Filter>Global</Filter>
+    </ClInclude>
     <ClInclude Include="src\Saddle.h" />
     <ClInclude Include="src\Saddle\Application.h">
       <Filter>Saddle</Filter>
@@ -19,13 +46,24 @@
     <ClInclude Include="src\Saddle\Logging\Logger.h">
       <Filter>Saddle\Logging</Filter>
     </ClInclude>
-    <ClInclude Include="src\Saddle\SaddleApi.h">
-      <Filter>Saddle</Filter>
+    <ClInclude Include="src\Saddle\Objects\Component.h">
+      <Filter>Saddle\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Saddle\Objects\Components\Transform.h">
+      <Filter>Saddle\Objects\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Saddle\Objects\Object.h">
+      <Filter>Saddle\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Saddle\Scenes\Scene.h">
+      <Filter>Saddle\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="src\Saddle\Start.h">
       <Filter>Saddle</Filter>
     </ClInclude>
-    <ClInclude Include="src\SaddleLogging.h" />
+    <ClInclude Include="src\util\Vector3.h">
+      <Filter>util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Saddle\Application.cpp">
@@ -33,6 +71,15 @@
     </ClCompile>
     <ClCompile Include="src\Saddle\Logging\Logger.cpp">
       <Filter>Saddle\Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Saddle\Objects\Component.cpp">
+      <Filter>Saddle\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Saddle\Objects\Object.cpp">
+      <Filter>Saddle\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Saddle\Scenes\Scene.cpp">
+      <Filter>Saddle\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
