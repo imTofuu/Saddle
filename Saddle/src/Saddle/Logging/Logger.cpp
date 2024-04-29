@@ -1,4 +1,5 @@
 #include "Logger.h"
+#include <cstdarg>
 
 namespace Saddle {
     Logger* Logger::clientLogger = nullptr;
@@ -28,7 +29,11 @@ namespace Saddle {
         std::cout << color << "[" << getAlias() << "] " << message << "\033[0m" << std::endl;
     }
 
-    void Logger::log(std::string message, Severity severity, const Loggable& loggables...) const {
-        //TODO
+    void Logger::log(Severity severity, const Loggable& loggable) const {
+	    log(loggable.toString(), severity);
+    }
+
+    void Logger::log(std::string message, Severity severity, const Loggable& loggable) const {
+	log(message + " " + loggable.toString(), severity);
     }
 }

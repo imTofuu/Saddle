@@ -16,19 +16,23 @@
     <ClInclude Include="src\Saddle\Logging\Loggable.h">
       <Filter>Saddle\Logging</Filter>
     </ClInclude>
+    <ClInclude Include="src\Saddle\Logging\Logger.h">
+      <Filter>Saddle\Logging</Filter>
+    </ClInclude>
     <ClInclude Include="src\Saddle\SaddleApi.h">
       <Filter>Saddle</Filter>
     </ClInclude>
     <ClInclude Include="src\Saddle\Start.h">
       <Filter>Saddle</Filter>
     </ClInclude>
-    <ClInclude Include="src\Saddle\Logging\Logger.h" />
     <ClInclude Include="src\SaddleLogging.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Saddle\Application.cpp">
       <Filter>Saddle</Filter>
     </ClCompile>
-    <ClCompile Include="src\Saddle\Logging\Logger.cpp" />
+    <ClCompile Include="src\Saddle\Logging\Logger.cpp">
+      <Filter>Saddle\Logging</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

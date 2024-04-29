@@ -102,12 +102,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Saddle.h" />
-    <ClInclude Include="src\SaddleLogging.h" />
     <ClInclude Include="src\Saddle\Application.h" />
     <ClInclude Include="src\Saddle\Logging\Loggable.h" />
     <ClInclude Include="src\Saddle\Logging\Logger.h" />
     <ClInclude Include="src\Saddle\SaddleApi.h" />
     <ClInclude Include="src\Saddle\Start.h" />
+    <ClInclude Include="src\SaddleLogging.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Saddle\Application.cpp" />

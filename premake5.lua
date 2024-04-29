@@ -41,6 +41,20 @@ project "Saddle"
 				("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Run")
 			}
 
+		filter "system:linux"
+			cppdialect "C++17"
+			staticruntime "On"
+			systemversion "latest"
+
+			defines {
+				"SDL_PLATFORM_LINUX",
+				"SDL_BUILD_DLL"
+			}
+
+			postbuildcommands {
+				("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Run")
+			}
+
 		filter "configurations:Debug"
 			defines "SDL_DEBUG"
 			symbols "On"
@@ -78,6 +92,15 @@ project "Run"
 
 		defines {
 			"SDL_PLATFORM_WINDOWS"
+		}
+
+	filter "system:linux"
+		cppdialect "C++17"
+		staticruntime "On"
+		systemversion "latest"
+
+		defines {
+			"SDL_PLATFORM_LINUX"
 		}
 
 	filter "configurations:Debug"

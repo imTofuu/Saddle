@@ -25,7 +25,8 @@ namespace Saddle {
 		std::string& getAlias() const { return *alias; }
 
 		void log(std::string message, Severity severity) const;
-		void log(std::string message, Severity severity, const Loggable& loggables...) const;
+		void log(Severity severity, const Loggable& loggables) const;
+		void log(std::string message, Severity severity, const Loggable& loggable) const;
 
 	private:
 		Logger(std::string alias) { this->alias = new std::string(alias); }
