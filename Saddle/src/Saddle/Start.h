@@ -1,7 +1,5 @@
 #pragma once
 
-#ifdef SDL_PLATFORM_WINDOWS
-
 extern Saddle::Application* Saddle::createApplication();
 
 int main(int argc, char** argv) {
@@ -9,5 +7,3 @@ int main(int argc, char** argv) {
 	app->Run();
 	delete app;
 }
-
-#endif
