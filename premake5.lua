@@ -12,6 +12,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-" .. arch
 
 include("dependencies/GLFW")
 include("dependencies/imgui")
+include("dependencies/glad")
 
 project "Saddle"
 		location "Saddle"
@@ -32,12 +33,14 @@ project "Saddle"
 			"Saddle/src/Saddle/Objects",
 
 			"dependencies/GLFW/include",
-			"dependencies/imgui"
+			"dependencies/imgui",
+			"dependencies/glad/include"
 		}
 
 		links {
 			"GLFW",
-			"imgui"
+			"imgui",
+			"glad"
 		}
 
 		filter "system:windows"
