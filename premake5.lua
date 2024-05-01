@@ -10,6 +10,9 @@ workspace "Saddle"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-" .. arch
 
+include("dependencies/GLFW")
+include("dependencies/imgui")
+
 project "Saddle"
 		location "Saddle"
 		kind "SharedLib"
@@ -26,7 +29,15 @@ project "Saddle"
 		includedirs {
 			"Saddle/src/Global",
 			"Saddle/src/util",
-			"Saddle/src/Saddle/Objects"
+			"Saddle/src/Saddle/Objects",
+
+			"dependencies/GLFW/include",
+			"dependencies/imgui"
+		}
+
+		links {
+			"GLFW",
+			"imgui"
 		}
 
 		filter "system:windows"
