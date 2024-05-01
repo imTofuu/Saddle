@@ -3,4 +3,4 @@
 	url = https://github.com/imTofuu/glfw
 [submodule "dependencies/imgui"]
 	path = dependencies/imgui
-	url = https://github.com/imtofuu/imgui
+	url = https://github.com/imTofuu/imgui
