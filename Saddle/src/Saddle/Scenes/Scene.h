@@ -18,7 +18,7 @@ namespace Saddle {
         Object& addObject() { return addObject("Object (" + m_sceneObjects->size()); }
         Object& addObject(std::string name);
 
-        std::string toString() const override;
+        std::string toString(int indents) const override;
         std::string getName() const { return *m_name; }
 
         static Scene& getActiveScene() { return *m_activeScene; }

@@ -5,11 +5,11 @@
 
 namespace Saddle {
 
-	class Transform : public Component {
+	class SDL_API Transform : public Component {
 	public:
 		Vector3 position, rotation, scale;
 
-		std::string toString() const override { return id() + ": {\n" + position.toString() + ",\n" + rotation.toString() + ",\n" + scale.toString() + "\n}"; }
+		std::string toString(int indents) const override;
 
 		static std::string id() { return "Transform"; }
 

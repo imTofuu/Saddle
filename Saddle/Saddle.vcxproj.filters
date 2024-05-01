@@ -58,12 +58,17 @@
     <ClInclude Include="src\Saddle\Scenes\Scene.h">
       <Filter>Saddle\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="src\Saddle\Serializable.h">
+      <Filter>Saddle</Filter>
+    </ClInclude>
     <ClInclude Include="src\Saddle\Start.h">
       <Filter>Saddle</Filter>
     </ClInclude>
     <ClInclude Include="src\util\Vector3.h">
       <Filter>util</Filter>
     </ClInclude>
+    <ClInclude Include="src\Saddle\Windows\Window.h" />
+    <ClInclude Include="src\Saddle\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Saddle\Application.cpp">
@@ -75,11 +80,17 @@
     <ClCompile Include="src\Saddle\Objects\Component.cpp">
       <Filter>Saddle\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="src\Saddle\Objects\Components\Transform.cpp">
+      <Filter>Saddle\Objects\Components</Filter>
+    </ClCompile>
     <ClCompile Include="src\Saddle\Objects\Object.cpp">
       <Filter>Saddle\Objects</Filter>
     </ClCompile>
     <ClCompile Include="src\Saddle\Scenes\Scene.cpp">
       <Filter>Saddle\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="src\Global\SaddleSerializing.h" />
+    <ClCompile Include="src\Saddle\Serializable.cpp" />
+    <ClCompile Include="src\Saddle\Windows\WindowsWindow.cpp" />
   </ItemGroup>
 </Project>

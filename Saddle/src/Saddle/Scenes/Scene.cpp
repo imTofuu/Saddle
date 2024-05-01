@@ -25,13 +25,13 @@ namespace Saddle {
         return *object;
     }
 
-    std::string Scene::toString() const {
-        std::string str = getName();
+    std::string Scene::toString(int indents) const {
+        std::string str = std::string(indents, '    ') += getName();
         for (int i = 0; i < m_sceneObjects->size(); i++) {
-            if (i == 0) str += ": {\n";
+            if (i == 0) str += ":\n";
             Object* object = (*m_sceneObjects)[i];
-            str += object->toString();
-            if (i != m_sceneObjects->size() - 1) str += ",\n"; else str += "\n}";
+            str += object->toString(indents + 1);
+            if (i == m_sceneObjects->size() - 1) str += "\n";
         }
         return str;
     }

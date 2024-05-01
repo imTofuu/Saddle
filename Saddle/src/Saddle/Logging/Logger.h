@@ -1,6 +1,5 @@
 #pragma once
 
-#include <SaddleApi.h>
 #include "Loggable.h"
 
 #include <string>

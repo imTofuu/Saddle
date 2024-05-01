@@ -7,14 +7,14 @@ namespace Saddle {
 		this->m_components = new std::unordered_map<std::string, Component*>();
 	}
 
-	std::string Object::toString() const {
-		std::string str = getName();
+	std::string Object::toString(int indents) const {
+		std::string str = std::string(indents, '	') += getName();
 		int i = 0;
 		for (auto& kv : *m_components) {
-			if (i == 0) str += ": {\n";
+			if (i == 0) str += ":\n";
 			Component* component = kv.second;
-			str += component->toString();
-			if (i != m_components->size() - 1) str += ",\n"; else str += "\n}";
+			str += component->toString(indents + 1);
+			if (i == m_components->size() - 1) str += "\n";
 			i++;
 		}
 		return str;

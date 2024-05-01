@@ -36,10 +36,10 @@ namespace Saddle {
     }
 
     void Logger::log(Severity severity, const Loggable& loggable) const {
-	    log(loggable.toString(), severity);
+	    log(loggable.toString(0), severity);
     }
 
     void Logger::log(std::string message, Severity severity, const Loggable& loggable) const {
-	    log(message + " " + loggable.toString(), severity);
+	    log(message + " " + loggable.toString(0), severity);
     }
 }

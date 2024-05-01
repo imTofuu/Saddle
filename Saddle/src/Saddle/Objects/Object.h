@@ -9,7 +9,7 @@ namespace Saddle {
 	class SDL_API Object : public Loggable {
 	public:
 
-		std::string toString() const override;
+		std::string toString(int indents) const override;
 		std::string getName() const { return *m_name; }
 
 		template<class T> T& addComponent();

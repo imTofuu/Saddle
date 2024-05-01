@@ -4,11 +4,17 @@
 
 namespace Saddle {
 
-	class Vector3 : public Loggable {
+	class SDL_API Vector3 : public Loggable {
 	public:
 		float x = 0, y = 0, z = 0;
 
-		std::string toString() const override { return "{ " + std::to_string(x) + ", " + std::to_string(y) + ", " + std::to_string(z) + " }"; }
+		std::string toString(int indents) const override {
+			std::string str = std::string(indents, '	');
+			str += std::to_string(x) += ", ";
+			str += std::to_string(y) += ", ";
+			str += std::to_string(z) += "\n";
+			return str;
+		}
 
 	};
 

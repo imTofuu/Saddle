@@ -7,7 +7,7 @@ namespace Saddle {
 	public:
 		
 
-		std::string toString() const override;
+		std::string toString(int indents) const override;
 
 	};
 }

@@ -2,8 +2,8 @@
 
 namespace Saddle {
 
-	std::string Component::toString() const {
-		return "Component";
+	std::string Component::toString(int indents) const {
+		return std::string(indents, '	') += "Component";
 	}
 
 }
