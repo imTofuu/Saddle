@@ -23,6 +23,8 @@ namespace Saddle {
 
         static Scene& getActiveScene() { return *m_activeScene; }
         static void setActiveScene(Scene& scene) { m_activeScene = &scene; }
+
+        const std::vector<Object*>& getObjects() const { return *m_sceneObjects; }
     private:
         std::string *m_name;
 

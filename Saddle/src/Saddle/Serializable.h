@@ -1,14 +1,21 @@
 #pragma once
 
+#include <string>
+#include <vector>
+
 namespace Saddle {
 
 	class Serializable {
 	public:
 
-		#define SDL_VAL(val) setValue(val);
+		void addPrimitive(void* data) { this-> } 
 
-		void setValue(void* value);
+	private:
+		friend class Serializer;
 
+		std::vector<void**> data;
+
+		bool isPrimitive = true;
 	};
 
 }
