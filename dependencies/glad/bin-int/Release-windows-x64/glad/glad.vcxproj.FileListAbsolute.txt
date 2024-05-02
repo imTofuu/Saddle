@@ -1,0 +1,2 @@
+C:\Users\yeetu\Documents\Code\Projects\Saddle\dependencies\glad\bin\Release-windows-x64\glad\glad.lib.lastcodeanalysissucceeded
+C:\Users\yeetu\Documents\Code\Projects\Saddle\dependencies\glad\bin-int\Release-windows-x64\glad\NativeCodeAnalysis.read.1.tlog

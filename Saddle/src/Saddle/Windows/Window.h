@@ -1,7 +1,8 @@
 #pragma once
 
-#include <SaddleApi.h>
+#include <glad/glad.h>
 #include <SaddleLogging.h>
+#include <SaddleApi.h>
 #include <GLFW/glfw3.h>
 
 namespace Saddle {
@@ -12,19 +13,37 @@ namespace Saddle {
 
 		std::string title;
 
-		WindowProperties(const std::string& Title, int width, int height) : w(width), h(height), title(Title) {}
+		bool vsync;
+
+		WindowProperties(const std::string& Title, int width, int height, bool Vsync = false) : w(width), h(height), title(Title), vsync(Vsync) {}
 	};
 
 	class SDL_API Window : public Loggable {
 	public:
-		virtual ~Window() {}
+		Window(const WindowProperties& properties = WindowProperties {"Saddle", 1280, 720});
 
-		virtual int w() const = 0;
-		virtual int h() const = 0;
+		inline int w() const { return properties->w; }
+		inline int h() const { return properties->h; }
 
-		virtual bool hasVsync() const = 0;
-		virtual void setVsync(bool vsync) = 0;
-		
-		static Window* createWindow(const WindowProperties& properties = WindowProperties("Saddle", 1280, 720));
+		inline bool hasVsync() const { return vsync; }
+		inline void setVsync(bool vsync) { glfwSwapInterval(vsync); this->vsync = vsync; }
+
+		void update();
+
+		inline bool shouldStop() const { return shouldstop; }
+
+		inline static Window& getActiveWindow() { return *activeWindow; }
+
+		std::string toString(int indents) const override;
+
+	private:
+
+		bool vsync = false;
+
+		static Window* activeWindow;
+		WindowProperties* properties;
+		GLFWwindow* glfwwindow;
+
+		bool shouldstop = false;
 	};
 }

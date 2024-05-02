@@ -105,6 +105,7 @@
     <ClInclude Include="src\Global\SaddleComponents.h" />
     <ClInclude Include="src\Global\SaddleLogging.h" />
     <ClInclude Include="src\Global\SaddleObjects.h" />
+    <ClInclude Include="src\Global\SaddleSerializing.h" />
     <ClInclude Include="src\Saddle.h" />
     <ClInclude Include="src\Saddle\Application.h" />
     <ClInclude Include="src\Saddle\Logging\Loggable.h" />
@@ -114,13 +115,12 @@
     <ClInclude Include="src\Saddle\Objects\Object.h" />
     <ClInclude Include="src\Saddle\Scenes\Scene.h" />
     <ClInclude Include="src\Saddle\Serializable.h" />
+    <ClInclude Include="src\Saddle\Serializer.h" />
     <ClInclude Include="src\Saddle\Start.h" />
     <ClInclude Include="src\Saddle\Windows\Window.h" />
-    <ClInclude Include="src\Saddle\Windows\WindowsWindow.h" />
     <ClInclude Include="src\util\Vector3.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Global\SaddleSerializing.h" />
     <ClCompile Include="src\Saddle\Application.cpp" />
     <ClCompile Include="src\Saddle\Logging\Logger.cpp" />
     <ClCompile Include="src\Saddle\Objects\Component.cpp" />
@@ -128,7 +128,7 @@
     <ClCompile Include="src\Saddle\Objects\Object.cpp" />
     <ClCompile Include="src\Saddle\Scenes\Scene.cpp" />
     <ClCompile Include="src\Saddle\Serializable.cpp" />
-    <ClCompile Include="src\Saddle\Windows\WindowsWindow.cpp" />
+    <ClCompile Include="src\Saddle\Windows\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\dependencies\GLFW\GLFW.vcxproj">

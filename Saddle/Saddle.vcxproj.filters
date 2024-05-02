@@ -19,6 +19,9 @@
     <Filter Include="Saddle\Scenes">
       <UniqueIdentifier>{620498A6-CEC4-13DD-97FF-5C5A037F58B9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Saddle\Windows">
+      <UniqueIdentifier>{AC031EBC-98D1-11C2-8165-82E86DD2ED26}</UniqueIdentifier>
+    </Filter>
     <Filter Include="util">
       <UniqueIdentifier>{43339F7C-2F6A-A00D-D856-8610C46C1C0F}</UniqueIdentifier>
     </Filter>
@@ -34,6 +37,9 @@
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="src\Global\SaddleObjects.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Global\SaddleSerializing.h">
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="src\Saddle.h" />
@@ -61,14 +67,18 @@
     <ClInclude Include="src\Saddle\Serializable.h">
       <Filter>Saddle</Filter>
     </ClInclude>
+    <ClInclude Include="src\Saddle\Serializer.h">
+      <Filter>Saddle</Filter>
+    </ClInclude>
     <ClInclude Include="src\Saddle\Start.h">
       <Filter>Saddle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Saddle\Windows\Window.h">
+      <Filter>Saddle\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\util\Vector3.h">
       <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="src\Saddle\Windows\Window.h" />
-    <ClInclude Include="src\Saddle\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Saddle\Application.cpp">
@@ -89,8 +99,11 @@
     <ClCompile Include="src\Saddle\Scenes\Scene.cpp">
       <Filter>Saddle\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="src\Global\SaddleSerializing.h" />
-    <ClCompile Include="src\Saddle\Serializable.cpp" />
-    <ClCompile Include="src\Saddle\Windows\WindowsWindow.cpp" />
+    <ClCompile Include="src\Saddle\Serializable.cpp">
+      <Filter>Saddle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Saddle\Windows\Window.cpp">
+      <Filter>Saddle\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

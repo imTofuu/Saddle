@@ -8,7 +8,7 @@ namespace Saddle {
 	class Serializable {
 	public:
 
-		void addPrimitive(void* data) { this-> } 
+		void addPrimitive(void* data) {} 
 
 	private:
 		friend class Serializer;

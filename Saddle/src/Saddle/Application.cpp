@@ -1,9 +1,6 @@
 #include "Application.h"
 
-#include <SaddleLogging.h>
-#include <SaddleObjects.h>
-
-#include "Windows/WindowsWindow.h"
+#include "Windows/Window.h"
 
 namespace Saddle {
 
@@ -14,8 +11,12 @@ namespace Saddle {
 	void Application::Run() {
 		Logger::initLoggers();
 
-		Window* window = WindowsWindow::createWindow();
+		Window* window = &Window();
 
-		while (true);
+		while (!window->shouldStop()) {
+			window->update();
+		}
+
+		glfwTerminate();
 	}
 }
