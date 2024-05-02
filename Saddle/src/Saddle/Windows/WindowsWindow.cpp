@@ -22,14 +22,20 @@ namespace Saddle {
 		this->properties = new WindowProperties(properties);
 		Logger::getCoreLogger().log("Initialising window with properties:\n", Logger::INFO, *this);
 
-		if (glfwInit()) Logger::getCoreLogger().log("GLFW initialised", Logger::DEBUG);
+		SDL_CORE_ASSERT(glfwInit(), "Failed to initialise GLFW");
+		Logger::getCoreLogger().log("GLFW initialised", Logger::DEBUG);
 
 		window = glfwCreateWindow(properties.w, properties.h, properties.title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(window);
-		glfwSwapInterval(0);
+		setVsync(true);
 	}
 
 	WindowsWindow::~WindowsWindow() {
 		delete properties;
+	}
+
+	void setVsync(bool vsync) {
+		glfwSwapInterval(vsync);
+		this->vsync = vsync;
 	}
 }

@@ -2,7 +2,6 @@
 
 #include <SaddleApi.h>
 #include <SaddleLogging.h>
-#include <string>
 #include <GLFW/glfw3.h>
 
 namespace Saddle {
@@ -22,6 +21,9 @@ namespace Saddle {
 
 		virtual int w() const = 0;
 		virtual int h() const = 0;
+
+		virtual bool hasVsync() const = 0;
+		virtual void setVsync(bool vsync) = 0;
 		
 		static Window* createWindow(const WindowProperties& properties = WindowProperties("Saddle", 1280, 720));
 	};

@@ -3,18 +3,20 @@
 #include "SaddleSerializing.h"
 
 namespace Saddle {
+	#define SDL_CORE_ASSERT(val, msg) if (!val) Logger::getCoreLogger().log("Assert failed: " + msg, Logger::ERROR)
+	#define SDL_CLIENT_ASSET(val, msg) if (!val) Logger::getClientLogger().log("Assert failed: " + msg, Logger::ERROR)
 
-#if defined(SDL_PLATFORM_WINDOWS) || defined(SDL_PLATFORM_LINUX)
-	#ifdef SDL_BUILD_DLL
-		#define SDL_API __declspec(dllexport)
+	#if defined(SDL_PLATFORM_WINDOWS) || defined(SDL_PLATFORM_LINUX)
+		#ifdef SDL_BUILD_DLL
+			#define SDL_API __declspec(dllexport)
+		#else
+			#define SDL_API __declspec(dllimport)
+		#endif
 	#else
-		#define SDL_API __declspec(dllimport)
+		#error Saddle only has support for Windows.
 	#endif
-#else
-	#error Saddle only has support for windows.
-#endif
 
-#ifdef SDL_BUILD_DLL
-	#define SDL_SERIAL : public Serializable
-#endif
+	#ifdef SDL_BUILD_DLL
+		#define SDL_SERIAL : public Serializable
+	#endif
 }
