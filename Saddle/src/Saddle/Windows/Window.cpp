@@ -17,7 +17,8 @@ namespace Saddle {
 		gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 
 
-		setVsync(false);
+		setVsync(this->properties->vsync);
+		setMaximised(this->properties->maximised);
 	}
 
 	std::string Window::toString(int indents) const

@@ -13,7 +13,7 @@ namespace Saddle {
         std::string serialize(const Scene& scene) const {
             std::ofstream file(scene.getName() + ".sdlscene");
             for(int i = 0; i < scene.getObjects().size(); i++) {
-                file << scene.getObjects()[i].serialize();
+                file << scene.getObjects()[i].serialize() << "\\O"; 
             }
         }
 
