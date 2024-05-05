@@ -10,6 +10,7 @@ namespace Saddle {
 		str += rotation.toString(0);
 		str += std::string(indents + 1, '	') += "scale: ";
 		str += scale.toString(0);
+
 		return str;
 	}
 

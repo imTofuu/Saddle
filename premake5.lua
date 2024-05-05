@@ -34,18 +34,20 @@ project "Saddle"
 
 			"dependencies/GLFW/include",
 			"dependencies/imgui",
-			"dependencies/glad/include"
+			"dependencies/glad/include",
+
+			"dependencies/imgui/backends"
 		}
 
 		links {
 			"GLFW",
 			"imgui",
-			"glad"
+			"glad",
 		}
 
 		filter "system:windows"
 			cppdialect "C++17"
-			staticruntime "On"
+			staticruntime "off"
 			systemversion "latest"
 
 			defines {
@@ -59,7 +61,7 @@ project "Saddle"
 
 		filter "system:linux"
 			cppdialect "C++17"
-			staticruntime "On"
+			staticruntime "off"
 			systemversion "latest"
 
 			defines {
@@ -103,7 +105,7 @@ project "Run"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
+		staticruntime "off"
 		systemversion "latest"
 
 		defines {
@@ -112,7 +114,7 @@ project "Run"
 
 	filter "system:linux"
 		cppdialect "C++17"
-		staticruntime "On"
+		staticruntime "off"
 		systemversion "latest"
 
 		defines {

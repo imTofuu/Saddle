@@ -59,10 +59,10 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>SDL_PLATFORM_WINDOWS;SDL_BUILD_DLL;SDL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src\Global;src\util;src\Saddle\Objects;..\dependencies\GLFW\include;..\dependencies\imgui;..\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src\Global;src\util;src\Saddle\Objects;..\dependencies\GLFW\include;..\dependencies\imgui;..\dependencies\glad\include;..\dependencies\imgui\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -80,13 +80,13 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>SDL_PLATFORM_WINDOWS;SDL_BUILD_DLL;SDL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src\Global;src\util;src\Saddle\Objects;..\dependencies\GLFW\include;..\dependencies\imgui;..\dependencies\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src\Global;src\util;src\Saddle\Objects;..\dependencies\GLFW\include;..\dependencies\imgui;..\dependencies\glad\include;..\dependencies\imgui\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -118,6 +118,7 @@
     <ClInclude Include="src\Saddle\Serializer.h" />
     <ClInclude Include="src\Saddle\Start.h" />
     <ClInclude Include="src\Saddle\Windows\Window.h" />
+    <ClInclude Include="src\util\Timer.h" />
     <ClInclude Include="src\util\Vector3.h" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +130,7 @@
     <ClCompile Include="src\Saddle\Scenes\Scene.cpp" />
     <ClCompile Include="src\Saddle\Serializable.cpp" />
     <ClCompile Include="src\Saddle\Windows\Window.cpp" />
+    <ClCompile Include="src\util\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\dependencies\GLFW\GLFW.vcxproj">

@@ -11,10 +11,13 @@ namespace Saddle {
 	void Application::Run() {
 		Logger::initLoggers();
 
-		Window* window = &Window();
+		Window window;
 
-		while (!window->shouldStop()) {
-			window->update();
+		Logger::getCoreLogger().log("Main loop started", Logger::INFO);
+
+		while (!window.shouldStop()) {
+			window.update();
+
 		}
 
 		glfwTerminate();

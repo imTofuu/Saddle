@@ -1,9 +1,19 @@
 #pragma once
 
 #include <glad/glad.h>
+
+#include <imgui.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
+
 #include <SaddleLogging.h>
 #include <SaddleApi.h>
+
 #include <GLFW/glfw3.h>
+
+#include <Timer.h>
+
+#include <thread>
 
 namespace Saddle {
 
@@ -31,7 +41,7 @@ namespace Saddle {
 		inline void setVsync(bool vsync) { glfwSwapInterval(vsync); this->vsync = vsync; }
 
 		inline bool isMaximised() const { return maximised; }
-		inline void setMaximised(bool maximised) { if (maximised) glfwMaximizeWindow(glfwwindow); this->maximised = maxismised }
+		inline void setMaximised(bool maximised) { if (maximised) glfwMaximizeWindow(glfwwindow); this->maximised = maximised; }
 
 		void update();
 
