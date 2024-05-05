@@ -1,9 +1,13 @@
 #pragma once
 
 #include <SaddleLogging.h>
+#include "Object.h"
 
 namespace Saddle {
 	class SDL_API Component : public Loggable {
+	private:
+		friend class Object;
+
 	public:
 		
 		std::string toString(int indents) const override;
@@ -12,16 +16,14 @@ namespace Saddle {
 
 	protected:
 
-		Component() { dependency = false; }
+		Component() {}
 
 		template<class T> T& addDependency();
 
 	private:
+		Object* object = nullptr;
 
-		friend class Object;
-		Object* object;
-
-		bool dependency;
+		bool dependency = false;
 
 	};
 

@@ -34,6 +34,7 @@ namespace Saddle {
 	template<class T>
 	T& Object::addComponent() {
 		T* component = new T();
+		component->object = this;
 		m_components->emplace(component->id(), component);
 		return *component;
 	}

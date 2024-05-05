@@ -80,6 +80,7 @@
       <Filter>util</Filter>
     </ClInclude>
     <ClInclude Include="src\util\Timer.h" />
+    <ClInclude Include="src\Saddle\Objects\Components\Sprite.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Saddle\Application.cpp">
@@ -107,5 +108,6 @@
       <Filter>Saddle\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\util\Timer.cpp" />
+    <ClCompile Include="src\Saddle\Objects\Components\Sprite.cpp" />
   </ItemGroup>
 </Project>

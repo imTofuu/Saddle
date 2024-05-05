@@ -17,7 +17,7 @@ namespace Saddle {
 
 		while (!window.shouldStop()) {
 			window.update();
-
+			
 		}
 
 		glfwTerminate();
