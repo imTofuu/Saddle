@@ -1,10 +1,12 @@
 #pragma once
 
 #include <SaddleLogging.h>
+#include <SaddleSerializing.h>
+
 #include "Object.h"
 
 namespace Saddle {
-	class SDL_API Component : public Loggable {
+	class SDL_API Component : public Loggable, public Serializable {
 	private:
 		friend class Object;
 

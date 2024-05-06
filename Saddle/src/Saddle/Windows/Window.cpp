@@ -61,7 +61,7 @@ namespace Saddle {
 		return str;
 	}
 
-	static void showStats(double ft, int fps, double fta) {
+	void showStats(double ft, int fps, double fta) {
 		bool closeButton = false;
 
 		// Break out if not visible, collapsed
@@ -89,13 +89,20 @@ namespace Saddle {
 		ImGui::End();
 	}
 
-	static double frameTimeMillis = 0;
-	static int framesLastSecond = 0;
-	static int framesThisSecond = 0;
-	static double frameTimeAvg = 0;
-	static double thisavg = 0;
+	double frameTimeMillis = 0;
+	int framesLastSecond = 0;
+	int framesThisSecond = 0;
+	double frameTimeAvg = 0;
+	double thisavg = 0;
 	Timer fpsTimer(true);
 	void Window::update() {
+
+		Scene& scene = Scene::getActiveScene();
+		Object& obj = scene.addObject("valuetest");
+		ExposedValueComponent& evc = obj.addComponent<ExposedValueComponent>();
+		evc<int>["test"] = 5;
+
+
 
 		Timer timer;
 		timer.start();

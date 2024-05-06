@@ -6,18 +6,13 @@
 namespace Saddle {
 
 	class Serializable {
-	public:
+	protected:
 
-		inline void addValue(std::string k, void* v) { data.emplace(k, v); }
-
-		inline std::string serialize() const;
+		virtual std::string serialize() const = 0;
+		virtual void deserialize(std::unordered_map<std::string, void*> values) = 0;
 
 	private:
 		friend class Serializer;
-
-		std::unordered_map<std::string, void*> data;
-
-		bool isPrimitive = true;
 	};
 
 }
