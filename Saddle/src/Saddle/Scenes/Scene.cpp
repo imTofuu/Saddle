@@ -5,14 +5,14 @@ namespace Saddle {
     Scene* Scene::m_activeScene = nullptr;
 
     Scene::Scene(std::string name) {
-        this->m_name = new std::string(name);
+        this->m_name = name;
         this->m_sceneObjects = new std::vector<Object*>();
 
         if (!m_activeScene) setActiveScene(*this);
     }
 
     Scene::~Scene() {
-        delete m_name;
+        Serializer::saveScene(this);
         for(auto* object : *m_sceneObjects) {
             delete object;
         }
@@ -33,6 +33,15 @@ namespace Saddle {
             str += object->toString(indents + 1);
             if (i == m_sceneObjects->size() - 1) str += "\n";
         }
+        return str;
+    }
+
+    std::string Scene::serialize() const {
+        std::string str = "<Scene=" + getName() + ">";
+        for (Object* obj : *m_sceneObjects) {
+            str += obj->serialize();
+        }
+        str += "</Scene>";
         return str;
     }
 }

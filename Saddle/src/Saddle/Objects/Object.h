@@ -6,7 +6,7 @@
 
 namespace Saddle {
 	class Component;
-	class SDL_API Object : public Loggable {
+	class SDL_API Object : public Loggable, public Serializable {
 	public:
 
 		std::string toString(int indents) const override;
@@ -15,13 +15,14 @@ namespace Saddle {
 		template<class T> T& addComponent();
 		template<class T> T& getComponent();
 
-	protected: 
-
 	private:
 		Object() : Object("Object") {}
 		Object(std::string name);
 
 		template<class T> T& addComponentAsDependency();
+
+		std::string serialize() const override;
+		void deserialize(std::unordered_map<std::string, void*> values) override;
 
 		std::string* m_name;
 
@@ -34,7 +35,7 @@ namespace Saddle {
 	template<class T>
 	T& Object::addComponent() {
 		T* component = new T();
-		component->object = this;
+		component->m_object = this;
 		m_components->emplace(component->id(), component);
 		return *component;
 	}

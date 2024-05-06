@@ -12,7 +12,7 @@ namespace Saddle {
 			std::string str = std::string(indents, '	');
 			str += std::to_string(x) += ", ";
 			str += std::to_string(y) += ", ";
-			str += std::to_string(z) += "\n";
+			str += std::to_string(z);
 			return str;
 		}
 

@@ -2,14 +2,14 @@
 #include <cstdarg>
 
 namespace Saddle {
-    Logger* Logger::clientLogger = nullptr;
-    Logger* Logger::coreLogger = nullptr;
+    Logger* Logger::m_clientLogger = nullptr;
+    Logger* Logger::m_coreLogger = nullptr;
 
     void Logger::initLoggers() {
-        coreLogger = new Logger("ENGINE");
-        clientLogger = new Logger("CLIENT");
+        m_coreLogger = new Logger("ENGINE");
+        m_clientLogger = new Logger("CLIENT");
 
-        coreLogger->log("Loggers initialised", Severity::INFO);
+        m_coreLogger->log("Loggers initialised", Severity::INFO);
     }
 
     void Logger::log(std::string message, Severity severity) const {

@@ -34,32 +34,32 @@ namespace Saddle {
 	public:
 		Window(const WindowProperties& properties = WindowProperties {"Saddle", 1280, 720, false, true});
 
-		inline int w() const { return properties->w; }
-		inline int h() const { return properties->h; }
+		inline int w() const { return m_properties->w; }
+		inline int h() const { return m_properties->h; }
 
-		inline bool hasVsync() const { return vsync; }
-		inline void setVsync(bool vsync) { glfwSwapInterval(vsync); this->vsync = vsync; }
+		inline bool hasVsync() const { return m_vsync; }
+		inline void setVsync(bool vsync) { glfwSwapInterval(vsync); this->m_vsync = vsync; }
 
-		inline bool isMaximised() const { return maximised; }
-		inline void setMaximised(bool maximised) { if (maximised) glfwMaximizeWindow(glfwwindow); this->maximised = maximised; }
+		inline bool isMaximised() const { return m_maximised; }
+		inline void setMaximised(bool maximised) { if (maximised) glfwMaximizeWindow(m_glfwwindow); this->m_maximised = maximised; }
 
 		void update();
 
-		inline bool shouldStop() const { return shouldstop; }
+		inline bool shouldStop() const { return m_shouldstop; }
 
-		inline static Window& getActiveWindow() { return *activeWindow; }
+		inline static Window& getActiveWindow() { return *m_activeWindow; }
 
 		std::string toString(int indents) const override;
 
 	private:
 
-		bool vsync;
-		bool maximised;
+		bool m_vsync;
+		bool m_maximised;
 
-		static Window* activeWindow;
-		WindowProperties* properties;
-		GLFWwindow* glfwwindow;
+		static Window* m_activeWindow;
+		WindowProperties* m_properties;
+		GLFWwindow* m_glfwwindow;
 
-		bool shouldstop = false;
+		bool m_shouldstop = false;
 	};
 }

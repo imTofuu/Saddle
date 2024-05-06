@@ -15,25 +15,25 @@ namespace Saddle {
 			ERROR
 		};
 
-		~Logger() { delete alias; }
+		~Logger() { delete m_alias; }
 
 		static void initLoggers();
 
-		static const Logger& getCoreLogger() { return *coreLogger; }
-		static const Logger& getClientLogger() { return *clientLogger; }
+		static const Logger& getCoreLogger() { return *m_coreLogger; }
+		static const Logger& getClientLogger() { return *m_clientLogger; }
 
-		std::string& getAlias() const { return *alias; }
+		std::string& getAlias() const { return *m_alias; }
 
 		void log(std::string message, Severity severity) const;
 		void log(Severity severity, const Loggable& loggables) const;
 		void log(std::string message, Severity severity, const Loggable& loggable) const;
 
 	private:
-		Logger(std::string alias) { this->alias = new std::string(alias); }
+		Logger(std::string alias) { this->m_alias = new std::string(alias); }
 
-		std::string* alias;
+		std::string* m_alias;
 
-		static Logger* coreLogger;
-		static Logger* clientLogger;
+		static Logger* m_coreLogger;
+		static Logger* m_clientLogger;
 	};
 }

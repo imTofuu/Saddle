@@ -14,10 +14,22 @@ namespace Saddle {
 			if (i == 0) str += ":\n";
 			Component* component = kv.second;
 			str += component->toString(indents + 1);
-			if (i == m_components->size() - 1) str += "\n";
+			if (i == m_components->size() - 1) str;
 			i++;
 		}
 		return str;
 	}
 
+	std::string Object::serialize() const {
+		std::string str = "<Object=" + getName() + ">";
+		for (auto& pair : *m_components) {
+			str += pair.second->serialize();
+		}
+		str += "</Object>";
+		return str;
+	}
+
+	void Object::deserialize(std::unordered_map<std::string, void*> values) {
+
+	}
 }

@@ -14,23 +14,29 @@ namespace Saddle {
 		
 		std::string toString(int indents) const override;
 
-		Object& getObject() const { return *object; }
+		Object& getObject() const { return *m_object; }
 
 	protected:
 
 		Component() {}
 
-		template<class T> T& addDependency();
+		template<class T> T& addDependency() { return object->addComponentAsDependency<T>(); }
+
+		template<class T> T* getOrCreateExposedValue(std::string key) {
+			T* val = new T();
+			m_exposedValues.emplace(key, val);
+			return val;
+		}
 
 	private:
-		Object* object = nullptr;
+		std::string serialize() const override;
+		void deserialize(std::unordered_map<std::string, void*> values) override;
 
-		bool dependency = false;
+		std::unordered_map<std::string, void*> m_exposedValues;
+
+		Object* m_object = nullptr;
+
+		bool m_dependency = false;
 
 	};
-
-	template<class T>
-	T& Component::addDependency() {
-		return object->addComponentAsDependency<T>();
-	}
 }

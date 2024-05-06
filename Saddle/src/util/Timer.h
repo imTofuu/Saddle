@@ -15,7 +15,7 @@ namespace Saddle {
 
 	private:
 
-		std::chrono::time_point<std::chrono::high_resolution_clock> startc, endc;
+		std::chrono::time_point<std::chrono::high_resolution_clock> m_startc, m_endc;
 
 	};
 

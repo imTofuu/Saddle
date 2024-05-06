@@ -1,22 +1,22 @@
 #pragma once
 
 #include <fstream>
-#include "Serializable.h"
 
-#include "./Scenes/Scene.h"
+#include "Scenes/Scene.h"
 
 namespace Saddle {
+    class Scene;
+    class SDL_API Serializer {
+    public:
 
-    class Serializer {
-        public:
-
-        std::string serialize(const Scene& scene) const {
-            std::ofstream file(scene.getName() + ".sdlscene");
-            for(int i = 0; i < scene.getObjects().size(); i++) {
-                file << scene.getObjects()[i].serialize() << "\\O"; 
+        static void saveScene(Scene* scene) {
+            std::ofstream file(scene->getName() + ".sdlscene");
+            for (int i = 0; i < scene->getObjects().size(); i++) {
+                file << scene->serialize();
             }
+            file.close();
         }
 
-    }
+    };
 
 }

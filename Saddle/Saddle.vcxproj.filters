@@ -30,9 +30,6 @@
     <ClInclude Include="src\Global\SaddleApi.h">
       <Filter>Global</Filter>
     </ClInclude>
-    <ClInclude Include="src\Global\SaddleComponents.h">
-      <Filter>Global</Filter>
-    </ClInclude>
     <ClInclude Include="src\Global\SaddleLogging.h">
       <Filter>Global</Filter>
     </ClInclude>
@@ -54,9 +51,6 @@
     </ClInclude>
     <ClInclude Include="src\Saddle\Objects\Component.h">
       <Filter>Saddle\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Saddle\Objects\Components\Transform.h">
-      <Filter>Saddle\Objects\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\Saddle\Objects\Object.h">
       <Filter>Saddle\Objects</Filter>
@@ -80,7 +74,7 @@
       <Filter>util</Filter>
     </ClInclude>
     <ClInclude Include="src\util\Timer.h" />
-    <ClInclude Include="src\Saddle\Objects\Components\Sprite.h" />
+    <ClInclude Include="src\Global\SaddleComponents.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Saddle\Application.cpp">
@@ -92,22 +86,16 @@
     <ClCompile Include="src\Saddle\Objects\Component.cpp">
       <Filter>Saddle\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="src\Saddle\Objects\Components\Transform.cpp">
-      <Filter>Saddle\Objects\Components</Filter>
-    </ClCompile>
     <ClCompile Include="src\Saddle\Objects\Object.cpp">
       <Filter>Saddle\Objects</Filter>
     </ClCompile>
     <ClCompile Include="src\Saddle\Scenes\Scene.cpp">
       <Filter>Saddle\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="src\Saddle\Serializable.cpp">
-      <Filter>Saddle</Filter>
-    </ClCompile>
     <ClCompile Include="src\Saddle\Windows\Window.cpp">
       <Filter>Saddle\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\util\Timer.cpp" />
-    <ClCompile Include="src\Saddle\Objects\Components\Sprite.cpp" />
+    <ClCompile Include="src\Global\SaddleComponents.cpp" />
   </ItemGroup>
 </Project>

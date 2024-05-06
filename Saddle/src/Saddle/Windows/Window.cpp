@@ -1,23 +1,26 @@
 #include "Window.h"
 
+#include <SaddleObjects.h>
+#include <SaddleComponents.h>
+
 namespace Saddle {
-	Window* Window::activeWindow = nullptr;
+	Window* Window::m_activeWindow = nullptr;
 
 	Window::Window(const WindowProperties& properties) {
-		if (!activeWindow) activeWindow = this;
+		if (!m_activeWindow) m_activeWindow = this;
 
 		const Logger& coreLogger = Logger::getCoreLogger();
 
 		// Creating copy of properties and logging them
-		this->properties = new WindowProperties(properties);
+		this->m_properties = new WindowProperties(properties);
 		coreLogger.log("Initialising window with properties:\n", Logger::INFO, *this);
 
 		// Validating GLFW
 		bool success = true;
 		success &= glfwInit();
-		glfwwindow = glfwCreateWindow(properties.w, properties.h, properties.title.c_str(), nullptr, nullptr);
-		success &= glfwwindow != 0;
-		glfwMakeContextCurrent(glfwwindow);
+		m_glfwwindow = glfwCreateWindow(properties.w, properties.h, properties.title.c_str(), nullptr, nullptr);
+		success &= m_glfwwindow != 0;
+		glfwMakeContextCurrent(m_glfwwindow);
 		SDL_CORE_ASSERT(success, "Failed to initialise GLFW");
 		coreLogger.log("GLFW initialised", Logger::DEBUG);
 
@@ -32,31 +35,37 @@ namespace Saddle {
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
 		ImGui::StyleColorsDark();
-		success &= ImGui_ImplGlfw_InitForOpenGL(glfwwindow, true);
+		success &= ImGui_ImplGlfw_InitForOpenGL(m_glfwwindow, true);
 		success &= ImGui_ImplOpenGL3_Init();
 		SDL_CORE_ASSERT(success, "Failed to initialise imgui");
 		coreLogger.log("imgui initialised", Logger::DEBUG);
 
-		setVsync(this->properties->vsync);
-		setMaximised(this->properties->maximised);
+		setVsync(this->m_properties->vsync);
+		setMaximised(this->m_properties->maximised);
 
 		coreLogger.log("Window properties applied", Logger::DEBUG);
+
+		Scene scene;
+		Object& obj = scene.addObject("valuetest");
+		obj.addComponent<TransformComponent>();
+		scene.addObject("gergs");
+		coreLogger.log(Logger::INFO, scene);
 	}
 
 	std::string Window::toString(int indents) const
 	{
-		std::string str = properties->title += ":\n";
+		std::string str = m_properties->title += ":\n";
 		str += std::string(indents + 1, '	') += "width: ";
-		str += std::to_string(properties->w);
+		str += std::to_string(m_properties->w);
 		str += "\n";
 		str += std::string(indents + 1, '	') += "height: ";
-		str += std::to_string(properties->h);
+		str += std::to_string(m_properties->h);
 		str += "\n";
 		str += std::string(indents + 1, '	') += "vsync: ";
-		str += properties->vsync ? "true" : "false";
+		str += m_properties->vsync ? "true" : "false";
 		str += "\n";
 		str += std::string(indents + 1, '	') += "maximised: ";
-		str += properties->maximised ? "true" : "false";
+		str += m_properties->maximised ? "true" : "false";
 		str += "\n";
 		return str;
 	}
@@ -97,13 +106,6 @@ namespace Saddle {
 	Timer fpsTimer(true);
 	void Window::update() {
 
-		Scene& scene = Scene::getActiveScene();
-		Object& obj = scene.addObject("valuetest");
-		ExposedValueComponent& evc = obj.addComponent<ExposedValueComponent>();
-		evc<int>["test"] = 5;
-
-
-
 		Timer timer;
 		timer.start();
 
@@ -121,10 +123,10 @@ namespace Saddle {
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-		glfwSwapBuffers(glfwwindow);
+		glfwSwapBuffers(m_glfwwindow);
 
 
-		shouldstop = glfwWindowShouldClose(glfwwindow);
+		m_shouldstop = glfwWindowShouldClose(m_glfwwindow);
 
 		framesThisSecond++;
 		thisavg += frameTimeMillis;

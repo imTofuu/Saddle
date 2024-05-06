@@ -3,13 +3,13 @@
 namespace Saddle {
 
 	void Timer::start() {
-		startc = std::chrono::high_resolution_clock::now();
+		m_startc = std::chrono::high_resolution_clock::now();
 	}
 
 	double Timer::current() {
-		endc = std::chrono::high_resolution_clock::now();
+		m_endc = std::chrono::high_resolution_clock::now();
 
-		std::chrono::duration<double> time = endc - startc;
+		std::chrono::duration<double> time = m_endc - m_startc;
 		return time.count() * 1000;
 	}
 
