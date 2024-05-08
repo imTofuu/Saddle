@@ -1,6 +1,7 @@
 #pragma once
 
 #include "./../Global/SaddleApi.h"
+#include "Windows/Window.h"
 
 namespace Saddle {
 

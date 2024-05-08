@@ -1,9 +1,5 @@
 #include "Application.h"
 
-#include "Windows/Window.h"
-
-#include "Serializer.h"
-
 namespace Saddle {
 
 	Application::Application() {}
@@ -17,8 +13,8 @@ namespace Saddle {
 
 		Logger::getCoreLogger().log("Main loop started", Logger::INFO);
 
-		while (!window.shouldStop()) {
-			window.update();	
+		while (!Window::getActiveWindow()->shouldStop()) {
+			Window::getActiveWindow()->update();	
 		}
 
 		glfwTerminate();
