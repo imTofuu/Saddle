@@ -2,11 +2,11 @@
 
 namespace Saddle {
 
-    static void Serializer::saveScene(Scene* scene) {
-        ofstream file(scene->getName() + ".sdlscene");
-        file.open();
+    void Serializer::saveScene(Scene* scene) {
+        std::ofstream file;
+        file.open(scene->getName() + ".sdlscene", std::ofstream::out);
         for(Object* object : scene->getObjects()) {
-            file << object->serialize();
+            object->serialize(file);
         }
         file.close();
     }

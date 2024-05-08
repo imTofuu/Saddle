@@ -6,12 +6,13 @@ namespace Saddle {
 		return std::string(indents, '	') += "Component";
 	}
 
-	std::string Component::serialize() const {
-		std::string str;
+	void Component::serialize(std::ofstream& file) const {
 		for (auto& pair : m_exposedValues) {
-			str += pair.first + ":" + reinterpret_cast<char*>(pair.second) + "\\";
+			Component comp = *(Component*)pair.second;
+			std::cout << reinterpret_cast<char*>(&comp) << "egewrg";
+			std::cout << ((char*)(pair.second)) << "efsd";
+			file << pair.first << ":" << *reinterpret_cast<char*>(pair.second) << "\\";
 		}
-		return str;
 	}
 
 	void Component::deserialize(std::unordered_map<std::string, void*> values) {

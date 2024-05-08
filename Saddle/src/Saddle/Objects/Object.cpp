@@ -20,13 +20,14 @@ namespace Saddle {
 		return str;
 	}
 
-	std::string Object::serialize() const {
-		std::string str = "<Object=" + getName() + ">";
+	void Object::serialize(std::ofstream& file) const {
+		file << "<Object=" << getName() << ">";
 		for (auto& pair : *m_components) {
-			str += pair.second->serialize();
+			file << "<" << pair.first << ">";
+			pair.second->serialize(file);
+			file << "</" << pair.first << ">";
 		}
-		str += "</Object>";
-		return str;
+		file << "</Object>";
 	}
 
 	void Object::deserialize(std::unordered_map<std::string, void*> values) {

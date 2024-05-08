@@ -30,7 +30,6 @@ project "Saddle"
 		includedirs {
 			"Saddle/src/Global",
 			"Saddle/src/util",
-			"Saddle/src/Saddle/Objects",
 
 			"dependencies/GLFW/include",
 			"dependencies/imgui",

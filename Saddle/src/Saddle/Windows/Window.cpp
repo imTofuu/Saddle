@@ -45,9 +45,10 @@ namespace Saddle {
 
 		coreLogger.log("Window properties applied", Logger::DEBUG);
 
-		Scene scene;
+		Scene& scene = Scene::createScene();
 		Object& obj = scene.addObject("valuetest");
-		obj.addComponent<TransformComponent>();
+		TransformComponent& tfc = obj.addComponent<TransformComponent>();
+		tfc.position.x = 5;
 		scene.addObject("gergs");
 		coreLogger.log(Logger::INFO, scene);
 	}

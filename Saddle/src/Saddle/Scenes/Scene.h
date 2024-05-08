@@ -27,9 +27,6 @@ namespace Saddle {
     */
     class SDL_API Scene : public Loggable, public Serializable {
     public:
-        Scene() : Scene("Scene" /*numscenes*/) {}
-        Scene(std::string name);
-
         ~Scene();
 
         /**
@@ -47,6 +44,16 @@ namespace Saddle {
          * \return A reference to the object created.
         */
         Object& addObject(std::string name);
+
+        /**
+         * \brief
+        */
+        static Scene& createScene() { return createScene("Scene"); }
+
+        /**
+         * \brief
+        */
+        static Scene& createScene(std::string name);
 
 
         /**
@@ -86,9 +93,12 @@ namespace Saddle {
 
     private:
 
+        Scene() : Scene("Scene" /*numscenes*/) {}
+        Scene(std::string name);
+
         friend class Serializer;
 
-        std::string serialize() const override;
+        void serialize(std::ofstream& file) const override;
         void deserialize(std::unordered_map<std::string, void*> values) override {}
 
         std::string m_name;

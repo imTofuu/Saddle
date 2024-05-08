@@ -29,7 +29,7 @@ namespace Saddle {
 		}
 
 	private:
-		std::string serialize() const override;
+		void serialize(std::ofstream& file) const override;
 		void deserialize(std::unordered_map<std::string, void*> values) override;
 
 		std::unordered_map<std::string, void*> m_exposedValues;

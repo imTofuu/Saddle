@@ -3,9 +3,11 @@
 #include <SaddleLogging.h>
 #include "Component.h"
 #include <unordered_map>
+#include <SaddleSerializing.h>
 
 namespace Saddle {
 	class Component;
+	class Serializer;
 
 	/**
      * \brief Saddle Object class. An object contains 
@@ -59,7 +61,7 @@ namespace Saddle {
 
 		template<class T> T& addComponentAsDependency();
 
-		std::string serialize() const override;
+		void serialize(std::ofstream& file) const override;
 		void deserialize(std::unordered_map<std::string, void*> values) override;
 
 		std::string* m_name;
@@ -67,6 +69,7 @@ namespace Saddle {
 		std::unordered_map<std::string, Component*>* m_components;
 
 		friend class Scene;
+		friend class Serializer;
 		friend class Component;
 	};
 
@@ -74,7 +77,7 @@ namespace Saddle {
 	T& Object::addComponent() {
 		T* component = new T();
 		component->m_object = this;
-		m_components->emplace(component->id(), component);
+		m_components->emplace(T::id(), component);
 		return *component;
 	}
 
@@ -87,6 +90,6 @@ namespace Saddle {
 
 	template<class T>
 	T& Object::getComponent() {
-		return m_components->at(component->id());
+		return *(T*)m_components->at(component->id());
 	}
 }

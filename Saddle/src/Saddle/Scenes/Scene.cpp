@@ -25,6 +25,10 @@ namespace Saddle {
         return *object;
     }
 
+    Scene& Scene::createScene(std::string name) {
+        return *(new Scene(name));
+    }
+
     std::string Scene::toString(int indents) const {
         std::string str = std::string(indents, '    ') += getName();
         for (int i = 0; i < m_sceneObjects->size(); i++) {
@@ -36,12 +40,11 @@ namespace Saddle {
         return str;
     }
 
-    std::string Scene::serialize() const {
-        std::string str = "<Scene=" + getName() + ">";
+    void Scene::serialize(std::ofstream& file) const {
+        file << "<Scene=" << getName() << ">";
         for (Object* obj : *m_sceneObjects) {
-            str += obj->serialize();
+            obj->serialize(file);
         }
-        str += "</Scene>";
-        return str;
+        file << "</Scene>";
     }
 }
