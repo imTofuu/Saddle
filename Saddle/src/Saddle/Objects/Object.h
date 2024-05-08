@@ -6,14 +6,52 @@
 
 namespace Saddle {
 	class Component;
+
+	/**
+     * \brief Saddle Object class. An object contains 
+     * 
+     * \extends Loggable Can be converted to a string and passed into a logger
+     * loggable.
+     * 
+     * \extends Serializable Objects are serialized by the scene that contains
+	 * it when the project is saved. Objects are saved by the scene into a
+	 * .sdlscene file which also contains all sibling objects. .sdlscene files
+	 * are human readable and editable.
+    */
 	class SDL_API Object : public Loggable, public Serializable {
 	public:
 
-		std::string toString(int indents) const override;
+		/**
+		 * \brief Adds a component to the object.
+		 * 
+		 * \tparam T The type of component. Component types must have a static
+		 * member std::string id() that returns a unique id and must extend
+		 * Component.
+		 * 
+		 * \return A reference to the added component.
+		*/
+		template<class T> T& addComponent();
+
+		/**
+		 * \brief Gets a component from the object.
+		 * 
+		 * \tparam T The type of component. Component types must have a static
+		 * member std::string id() that returns a unique id and must extend
+		 * Component.
+		 * 
+		 * \return A reference to the component, if the object has it. If the
+		 * object does not have a component of type T an exception will be
+		 * thrown.
+		*/
+		template<class T> T& getComponent();
+
+
+		/**
+		 * \return The name of the scene.
+		*/
 		std::string getName() const { return *m_name; }
 
-		template<class T> T& addComponent();
-		template<class T> T& getComponent();
+		std::string toString(int indents) const override;
 
 	private:
 		Object() : Object("Object") {}
