@@ -12,4 +12,13 @@ namespace Saddle {
 		return str;
 	}
 
+	//Sprite component
+
+	SpriteComponent::SpriteComponent() : transform(addDependency<TransformComponent>()) {}
+
+	std::string SpriteComponent::toString(int indents) const {
+		GLuint
+		return "SpriteComponent";
+	}
+
 }
