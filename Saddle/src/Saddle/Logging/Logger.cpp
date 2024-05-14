@@ -16,23 +16,28 @@ namespace Saddle {
         std::string color;
         switch (severity)
         {
-            case Saddle::Logger::DEBUG:
+            case Logger::DEBUG:
                 #ifndef SDL_DEBUG
                     return;
                 #endif
                 color = "\033[1;32m";
                 break;
-            case Saddle::Logger::INFO:
+            case Logger::INFO:
                 color = "\033[0m";
                 break;
-            case Saddle::Logger::WARN:
+            case Logger::WARN:
                 color = "\033[1;33m";
                 break;
-            case Saddle::Logger::ERROR:
+            case Logger::ERROR:
+                color = "\033[1;31m";
+                break;
+            case Logger::FATAL:
                 color = "\033[1;31m";
                 break;
         }
         std::cout << color << "[" << getAlias() << "] " << message << "\033[0m" << std::endl;
+        if (severity == Saddle::Logger::FATAL)
+            exit(1);
     }
 
     void Logger::log(Severity severity, const Loggable& loggable) const {

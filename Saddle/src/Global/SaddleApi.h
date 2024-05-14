@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdint.h>
+
 namespace Saddle {
 	#define SDL_CORE_ASSERT(val, msg) if (!val) { Logger::getCoreLogger().log("Assert failed: "  msg, Logger::ERROR); __debugbreak(); }
 	#define SDL_CLIENT_ASSET(val, msg) if (!val) { Logger::getClientLogger().log("Assert failed: "  msg, Logger::ERROR); __debugbreak(); }

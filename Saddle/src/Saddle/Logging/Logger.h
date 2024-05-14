@@ -12,7 +12,8 @@ namespace Saddle {
 			DEBUG,
 			INFO,
 			WARN,
-			ERROR
+			ERROR,
+			FATAL
 		};
 
 		~Logger() { delete m_alias; }

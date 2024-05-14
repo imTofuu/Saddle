@@ -8,8 +8,6 @@ namespace Saddle {
 
 	void Component::serialize(std::ofstream& file) const {
 		for (auto& pair : m_exposedValues) {
-			Component comp = *(Component*)pair.second;
-			std::cout << reinterpret_cast<char*>(&comp) << "egewrg";
 			std::cout << ((char*)(pair.second)) << "efsd";
 			file << pair.first << ":" << *reinterpret_cast<char*>(pair.second) << "\\";
 		}

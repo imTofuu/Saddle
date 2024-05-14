@@ -84,7 +84,7 @@ namespace Saddle {
 	template<class T>
 	T& Object::addComponentAsDependency() {
 		T& component = addComponent<T>();
-		component.dependency = true;
+		component.m_dependency = true;
 		return component;
 	}
 

@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 
-#include "Scenes/Scene.h"
+#include "./../Scenes/Scene.h"
 
 namespace Saddle {
     class Scene;

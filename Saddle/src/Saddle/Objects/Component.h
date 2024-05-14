@@ -20,7 +20,7 @@ namespace Saddle {
 
 		Component() {}
 
-		template<class T> T& addDependency() { return object->addComponentAsDependency<T>(); }
+		template<class T> T& addDependency() { return m_object->addComponentAsDependency<T>(); }
 
 		template<class T> T* getOrCreateExposedValue(std::string key) {
 			T* val = new T();

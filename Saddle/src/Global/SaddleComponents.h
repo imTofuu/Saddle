@@ -2,6 +2,7 @@
 
 #include <SaddleObjects.h>
 #include <Vector3.h>
+#include "./../Saddle/Rendering/Textures/Sprite.h"
 
 namespace Saddle {
 
@@ -22,11 +23,12 @@ namespace Saddle {
 
 		std::string toString(int indents) const override;
 		static std::string id() { return "Sprite"; }
-	
+
 	private:
 
+		const Sprite* sprite;
 		TransformComponent& transform;
 
-	}
+	};
 
 }
