@@ -1,5 +1,8 @@
 #include "Serializer.h"
 
+#include <fstream>
+#include <iostream>
+
 namespace Saddle {
 
     void Serializer::saveScene(Scene* scene) {

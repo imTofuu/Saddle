@@ -1,7 +1,16 @@
+#pragma warning ( disable : 4805 )
+
+#include <glad/glad.h>
+
 #include "Window.h"
 
-#include <SaddleObjects.h>
 #include <SaddleComponents.h>
+
+#include <Timer.h>
+
+#include <imgui.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
 
 namespace Saddle {
 	Window* Window::m_activeWindow = nullptr;

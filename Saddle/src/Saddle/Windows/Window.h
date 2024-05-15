@@ -1,28 +1,16 @@
 #pragma once
 
-#include <glad/glad.h>
-
-#include <imgui.h>
-#include <imgui_impl_glfw.h>
-#include <imgui_impl_opengl3.h>
-
 #include <SaddleLogging.h>
 #include <SaddleApi.h>
-
 #include <GLFW/glfw3.h>
-
 #include "./../Application.h"
-
-#include <Timer.h>
-
-#include <thread>
 
 namespace Saddle {
 
 	/**
 	 * \brief Contains window properties used for window initialisation.
 	*/
-	struct WindowProperties {
+	struct SDL_API WindowProperties {
 		/**
 		 * \brief Width of the window.
 		*/

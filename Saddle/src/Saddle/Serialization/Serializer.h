@@ -1,8 +1,5 @@
 #pragma once
 
-#include <fstream>
-#include <iostream>
-
 #include "./../Scenes/Scene.h"
 
 namespace Saddle {

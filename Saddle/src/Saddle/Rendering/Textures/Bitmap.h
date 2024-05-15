@@ -4,7 +4,6 @@
 #include <SaddleApi.h>
 #include <string>
 #include "./../Color.h"
-#include <fstream>
 
 namespace Saddle {
 
@@ -12,6 +11,7 @@ namespace Saddle {
 	public:
 
 		Bitmap(std::string filepath, GLuint& tex);
+		~Bitmap() { delete[] values; }
 
 		Color get(int x, int y) const { return values[(y * w) + x]; }
 		void set(int x, int y, Color color) { values[(y * w) + x] = color; }
@@ -20,7 +20,7 @@ namespace Saddle {
 	private:
 
 		int w, h;
-		Color values[];
+		Color *values;
 
 	};
 

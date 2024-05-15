@@ -1,10 +1,11 @@
 #pragma once
 
 #include <chrono>
+#include <SaddleApi.h>
 
 namespace Saddle {
 
-	class Timer {
+	class SDL_API Timer {
 	public:
 
 		/**
