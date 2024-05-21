@@ -14,8 +14,6 @@ SADDLE {
 
 	//Sprite component
 
-	SpriteComponent::SpriteComponent() : transform(addDependency<TransformComponent>()) {}
-
 	std::string SpriteComponent::toString(int indents) const {
 		return "SpriteComponent";
 	}

@@ -2,24 +2,25 @@
 
 #include <SaddleObjects.h>
 #include <Vector3.h>
-#include "./../Saddle/Rendering/Textures/Sprite.h"
 
 SADDLE {
 
 	class SDL_API TransformComponent : public Component {
 	public:
-		Vector3& position = *getOrCreateExposedValue<Vector3>("position"), 
-			& rotation = *getOrCreateExposedValue<Vector3>("rotation"), 
-			& scale = *getOrCreateExposedValue<Vector3>("scale");
+		Vector3& position = getOrCreateVector3("position"),
+			& rotation = getOrCreateVector3("rotation"),
+			& scale = getOrCreateVector3("scale");
 
 		std::string toString(int indents) const override;
 		static std::string id() { return "Transform"; }
+
+		TransformComponent(Object& object) : Component(object) {}
 
 	};
 
 	class SDL_API SpriteComponent : public Component {
 	public:
-		SpriteComponent();
+		SpriteComponent(Object& object) : transform(addDependency<TransformComponent>()), Component(object) {  }
 
 		std::string toString(int indents) const override;
 		static std::string id() { return "Sprite"; }
@@ -28,7 +29,6 @@ SADDLE {
 
 	private:
 
-		const Sprite* sprite;
 		TransformComponent& transform;
 
 	};

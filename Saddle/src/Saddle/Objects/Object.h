@@ -62,10 +62,12 @@ namespace Saddle {
 		friend class Component;
 	};
 
+
+	// Template definitions
+
 	template<class T>
 	T& Object::addComponent() {
-		T* component = new T();
-		component->m_object = this;
+		T* component = new T(*this);
 		m_components->emplace(T::id(), component);
 		return *component;
 	}

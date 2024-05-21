@@ -36,9 +36,6 @@
     <ClInclude Include="src\Global\SaddleObjects.h">
       <Filter>Global</Filter>
     </ClInclude>
-    <ClInclude Include="src\Global\SaddleSerializing.h">
-      <Filter>Global</Filter>
-    </ClInclude>
     <ClInclude Include="src\Saddle.h" />
     <ClInclude Include="src\Saddle\Application.h">
       <Filter>Saddle</Filter>
@@ -58,17 +55,14 @@
     <ClInclude Include="src\Saddle\Scenes\Scene.h">
       <Filter>Saddle\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="src\Saddle\Serialization\Serializable.h">
-      <Filter>Saddle</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Saddle\Serialization\Serializer.h">
-      <Filter>Saddle</Filter>
-    </ClInclude>
     <ClInclude Include="src\Saddle\Start.h">
       <Filter>Saddle</Filter>
     </ClInclude>
     <ClInclude Include="src\Saddle\Windows\Window.h">
       <Filter>Saddle\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\Color.h">
+      <Filter>util</Filter>
     </ClInclude>
     <ClInclude Include="src\util\Timer.h">
       <Filter>util</Filter>
@@ -76,9 +70,7 @@
     <ClInclude Include="src\util\Vector3.h">
       <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="src\Saddle\Rendering\Textures\Sprite.h" />
-    <ClInclude Include="src\Saddle\Rendering\Textures\Bitmap.h" />
-    <ClInclude Include="src\Saddle\Rendering\Color.h" />
+    <ClInclude Include="src\Saddle\Inspectable.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Global\SaddleComponents.cpp">
@@ -99,15 +91,11 @@
     <ClCompile Include="src\Saddle\Scenes\Scene.cpp">
       <Filter>Saddle\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="src\Saddle\Serialization\Serializer.cpp">
-      <Filter>Saddle</Filter>
-    </ClCompile>
     <ClCompile Include="src\Saddle\Windows\Window.cpp">
       <Filter>Saddle\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\util\Timer.cpp">
       <Filter>util</Filter>
     </ClCompile>
-    <ClCompile Include="src\Saddle\Rendering\Textures\Bitmap.cpp" />
   </ItemGroup>
 </Project>

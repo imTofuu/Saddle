@@ -12,7 +12,6 @@ SADDLE {
     }
 
     Scene::~Scene() {
-        Serializer::saveScene(this);
         for(auto* object : *m_sceneObjects) {
             delete object;
         }
@@ -38,13 +37,5 @@ SADDLE {
             if (i == m_sceneObjects->size() - 1) str += "\n";
         }
         return str;
-    }
-
-    void Scene::serialize(std::ofstream& file) const {
-        file << "<Scene=" << getName() << ">";
-        for (Object* obj : *m_sceneObjects) {
-            obj->serialize(file);
-        }
-        file << "</Scene>";
     }
 }
