@@ -1,6 +1,6 @@
 #include "Timer.h"
 
-namespace Saddle {
+SADDLE {
 
 	void Timer::start() {
 		m_startc = std::chrono::high_resolution_clock::now();

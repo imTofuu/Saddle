@@ -5,7 +5,7 @@
 #include <GLFW/glfw3.h>
 #include "./../Application.h"
 
-namespace Saddle {
+SADDLE {
 
 	/**
 	 * \brief Contains window properties used for window initialisation.

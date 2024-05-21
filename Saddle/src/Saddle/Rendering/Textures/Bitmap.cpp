@@ -5,7 +5,7 @@
 
 namespace Saddle {
 
-	Bitmap::Bitmap(std::string filepath, GLuint& tex) {
+	Bitmap::Bitmap(std::string filepath) {
 		std::ifstream f;
 		f.open(filepath, std::ios::in | std::ios::binary);
 

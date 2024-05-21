@@ -3,7 +3,7 @@
 #include <chrono>
 #include <SaddleApi.h>
 
-namespace Saddle {
+SADDLE {
 
 	class SDL_API Timer {
 	public:

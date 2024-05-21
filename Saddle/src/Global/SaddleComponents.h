@@ -4,7 +4,7 @@
 #include <Vector3.h>
 #include "./../Saddle/Rendering/Textures/Sprite.h"
 
-namespace Saddle {
+SADDLE {
 
 	class SDL_API TransformComponent : public Component {
 	public:
@@ -23,6 +23,8 @@ namespace Saddle {
 
 		std::string toString(int indents) const override;
 		static std::string id() { return "Sprite"; }
+
+		
 
 	private:
 

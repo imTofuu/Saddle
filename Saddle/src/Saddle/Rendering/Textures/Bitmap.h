@@ -1,6 +1,5 @@
 #pragma once
 
-#include <glad/glad.h>
 #include <SaddleApi.h>
 #include <string>
 #include "./../Color.h"
@@ -10,7 +9,7 @@ namespace Saddle {
 	class SDL_API Bitmap {
 	public:
 
-		Bitmap(std::string filepath, GLuint& tex);
+		Bitmap(std::string filepath);
 		~Bitmap() { delete[] values; }
 
 		Color get(int x, int y) const { return values[(y * w) + x]; }

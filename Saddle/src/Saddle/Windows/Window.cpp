@@ -12,7 +12,7 @@
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 
-namespace Saddle {
+SADDLE {
 	Window* Window::m_activeWindow = nullptr;
 
 	Window::Window(const WindowProperties& properties) {

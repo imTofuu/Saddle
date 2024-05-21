@@ -1,6 +1,6 @@
 #include "SaddleComponents.h"
 
-namespace Saddle {
+SADDLE {
 
 	//Transform component
 

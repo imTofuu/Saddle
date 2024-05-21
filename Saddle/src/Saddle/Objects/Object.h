@@ -3,24 +3,17 @@
 #include <SaddleLogging.h>
 #include "Component.h"
 #include <unordered_map>
-#include <SaddleSerializing.h>
 
 namespace Saddle {
 	class Component;
-	class Serializer;
 
 	/**
      * \brief Saddle Object class. An object contains 
      * 
      * \extends Loggable Can be converted to a string and passed into a logger
      * loggable.
-     * 
-     * \extends Serializable Objects are serialized by the scene that contains
-	 * it when the project is saved. Objects are saved by the scene into a
-	 * .sdlscene file which also contains all sibling objects. .sdlscene files
-	 * are human readable and editable.
     */
-	class SDL_API Object : public Loggable, public Serializable {
+	class SDL_API Object : public Loggable {
 	public:
 
 		/**
@@ -61,15 +54,11 @@ namespace Saddle {
 
 		template<class T> T& addComponentAsDependency();
 
-		void serialize(std::ofstream& file) const override;
-		void deserialize(std::unordered_map<std::string, void*> values) override;
-
 		std::string* m_name;
 
 		std::unordered_map<std::string, Component*>* m_components;
 
 		friend class Scene;
-		friend class Serializer;
 		friend class Component;
 	};
 

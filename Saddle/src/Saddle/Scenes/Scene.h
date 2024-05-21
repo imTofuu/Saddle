@@ -4,13 +4,10 @@
 #include <SaddleLogging.h>
 #include "./../Saddle/Objects/Object.h"
 
-#include <SaddleSerializing.h>
-
 #include <vector>
 
-namespace Saddle {
+SADDLE {
     class Object;
-    class Serializer;
 
     /**
      * \brief Saddle Scene class. Saddle scenes contain and are responsible for
@@ -18,14 +15,8 @@ namespace Saddle {
      * 
      * \extends Loggable Can be converted to a string and passed into a logger
      * loggable.
-     * 
-     * \extends Serializable Scenes are responsible for serializing themselves
-     * when the project is saved. Serialized scenes are saved to a .sdlscene
-     * file and are human readable and editable. .sdlscene files contains all
-     * of the objects that the scene contains and all of its objects
-     * components.
     */
-    class SDL_API Scene : public Loggable, public Serializable {
+    class SDL_API Scene : public Loggable {
     public:
         ~Scene();
 
@@ -95,11 +86,6 @@ namespace Saddle {
 
         Scene() : Scene("Scene" /*numscenes*/) {}
         Scene(std::string name);
-
-        friend class Serializer;
-
-        void serialize(std::ofstream& file) const override;
-        void deserialize(std::unordered_map<std::string, void*> values) override {}
 
         std::string m_name;
 

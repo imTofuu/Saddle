@@ -3,7 +3,7 @@
 #include "Windows/Window.h"
 #include <SaddleObjects.h>
 
-namespace Saddle {
+SADDLE {
 
 	Application::Application() {}
 
