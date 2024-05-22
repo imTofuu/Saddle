@@ -9,10 +9,14 @@
 
 #include "Object.h"
 
+#include "./../EventDispatcher.h"
+
 namespace Saddle {
+	class EventDispatcher;
 	class SDL_API Component : public Loggable {
 	private:
 		friend class Object;
+		friend class EventDispatcher;
 
 	public:
 		
@@ -20,15 +24,41 @@ namespace Saddle {
 
 		Object& getObject() const { return m_object; }
 
-	public:
+	protected: // EVENTS
 
+		/**
+		 * \brief Last code that runs before the screen buffer is switched.
+		 * Any shaders that need to be applied to the screen should be run
+		 * here.
+		*/
 		virtual void preRender() {}
 
-		void update(double delta) {}
+
+		/**
+		 * \brief Runs on a component when it is created. This is when the
+		 * component is created, meaning there is no guarantee that other
+		 * things, like scenes, objects, or components will exist. To guarantee
+		 * references to other objects, use start(). You may not destroy the
+		 * components in this event, rather wait to try on the first frame it
+		 * is rendered.
+		*/
+		virtual void created() {}
+
+		/**
+		 * \brief Runs when the game is started, if the component exists.
+		*/
+		virtual void start() {}
+
+		/**
+		 * \brief Run after a frame is rendered, if the component exists.
+		 * 
+		 * \param delta The time that has passed since the last update.
+		*/
+		virtual void update(double delta) {}
 
 	protected:
 
-		Component(Object& object) : m_object(object) {}
+		Component(Object& object) : m_object(object) { m_components.push_back(this); }
 		virtual ~Component();
 
 		template<class T> T& addDependency() { return m_object.addComponentAsDependency<T>(); }
@@ -44,6 +74,8 @@ namespace Saddle {
 
 
 	private:
+
+		static std::vector<Component*> m_components;
 
 		template<class T>
 		T& getOrCreateExposedValue(std::string key, InspectableType type) {

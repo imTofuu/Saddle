@@ -2,6 +2,7 @@
 
 #include "Windows/Window.h"
 #include <SaddleObjects.h>
+#include "EventDispatcher.h"
 
 SADDLE {
 
@@ -13,6 +14,8 @@ SADDLE {
 		Logger::initLoggers();
 
 		Window window;
+
+		EventDispatcher::dispatchStart();
 
 		Logger::getCoreLogger().log("Main loop started", Logger::INFO);
 

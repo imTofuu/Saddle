@@ -4,6 +4,8 @@
 #include "Component.h"
 #include <unordered_map>
 
+#include "./../EventDispatcher.h"
+
 namespace Saddle {
 	class Component;
 
@@ -40,6 +42,28 @@ namespace Saddle {
 		*/
 		template<class T> T& getComponent();
 
+		/**
+		 * \brief Removes a component from the object.
+		 * 
+		 * \tparam T The type of component. Component types must have a static
+		 * member std::string id() that returns a unique id and must extend
+		 * Component.
+		 * 
+		 * \return Remove success.
+		*/
+		template<class T> bool removeComponent();
+
+		/**
+		 * \brief Checks if the object has a component of type T.
+		 * 
+		 * \tparam T The type of component. Component types must have a static
+		 * member std::String id() that returns a unique id and must extend
+		 * Component.
+		 * 
+		 * \return If the object has a component of type T.
+		*/
+		template<class T> bool hasComponent();
+
 
 		/**
 		 * \return The name of the scene.
@@ -69,6 +93,7 @@ namespace Saddle {
 	T& Object::addComponent() {
 		T* component = new T(*this);
 		m_components->emplace(T::id(), component);
+		EventDispatcher::dispatchCreated();
 		return *component;
 	}
 
@@ -81,6 +106,28 @@ namespace Saddle {
 
 	template<class T>
 	T& Object::getComponent() {
-		return *(T*)m_components->at(component->id());
+		auto iter = m_components->find(T::id());
+		SDL_CORE_ASSERT(iter != m_components.end(), "Object does not contain component.")
+		return *(T*)m_components->at(T::id());
+	}
+
+	template<class T>
+	bool Object::removeComponent() {
+		T& component = getComponent<T>();
+
+		if(component.m_dependency) {
+			Logger::getCoreLogger().log("Component is dependency.", Logger::ERROR);
+			return false;
+		}
+
+		auto iter = m_components.find(component.id());
+		m_components.erase(iter);
+
+		return true;
+	}
+
+	template<class T>
+	bool Object::hasComponent() {
+		return m_components.find(T::id()) != m_components.end();
 	}
 }

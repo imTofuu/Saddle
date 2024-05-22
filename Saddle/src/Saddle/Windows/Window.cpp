@@ -12,6 +12,8 @@
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 
+#include "EventDispatcher.h"
+
 SADDLE {
 	Window* Window::m_activeWindow = nullptr;
 
@@ -46,6 +48,7 @@ SADDLE {
 		ImGui::StyleColorsDark();
 		success &= ImGui_ImplGlfw_InitForOpenGL(m_glfwwindow, true);
 		success &= ImGui_ImplOpenGL3_Init();
+		ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 		SDL_CORE_ASSERT(success, "Failed to initialise imgui");
 		coreLogger.log("imgui initialised", Logger::DEBUG);
 
@@ -81,10 +84,8 @@ SADDLE {
 	}
 
 	void showStats(double ft, int fps, double fta) {
-		bool closeButton = false;
-
 		// Break out if not visible, collapsed
-		if (!ImGui::Begin("Statistics", &closeButton)) {
+		if (!ImGui::Begin("Statistics")) {
 			ImGui::End();
 			return;
 		}
@@ -108,22 +109,18 @@ SADDLE {
 		ImGui::End();
 	}
 
-	double frameTimeMillis = 0;
-	int framesLastSecond = 0;
-	int framesThisSecond = 0;
-	double frameTimeAvg = 0;
-	double thisavg = 0;
-	Timer fpsTimer(true);
-	void Window::update() {
+	void explorer() {
+		if(!ImGui::Begin("Explorer")) {
+			ImGui::End();
+			return;
+		}
 
-		Timer timer;
-		timer.start();
+		ImGui::Text("Explorer");
 
-		glClearColor(0, 0, 0, 1);
-		glClear(GL_COLOR_BUFFER_BIT);
+		ImGui::
+	}
 
-		glfwPollEvents();
-
+	void doImGui() {
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
@@ -132,12 +129,16 @@ SADDLE {
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+	}
 
-		glfwSwapBuffers(m_glfwwindow);
+	double frameTimeMillis = 0;
+	int framesLastSecond = 0;
+	int framesThisSecond = 0;
+	double frameTimeAvg = 0;
+	double thisavg = 0;
+	Timer fpsTimer(true);
 
-
-		m_shouldstop = glfwWindowShouldClose(m_glfwwindow);
-
+	void updateFPS() {
 		framesThisSecond++;
 		thisavg += frameTimeMillis;
 		if (fpsTimer.current() >= 1000) {
@@ -151,5 +152,26 @@ SADDLE {
 		}
 
 		frameTimeMillis = timer.current();
+	}
+
+	void Window::update() {
+
+		Timer timer;
+		timer.start();
+
+		glClearColor(0, 0, 0, 1);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		glfwPollEvents();
+
+		doImGui();
+
+		glfwSwapBuffers(m_glfwwindow);
+
+		m_shouldstop = glfwWindowShouldClose(m_glfwwindow);
+
+		updateFPS();
+
+		EventDispatcher::dispatchUpdate(frameTimeMillis);
 	}
 }
