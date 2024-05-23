@@ -58,7 +58,7 @@ namespace Saddle {
 
 	protected:
 
-		Component(Object& object) : m_object(object) { m_components.push_back(this); }
+		Component(Object& object) : m_object(object) { m_components->push_back(this); }
 		virtual ~Component();
 
 		template<class T> T& addDependency() { return m_object.addComponentAsDependency<T>(); }
@@ -75,7 +75,7 @@ namespace Saddle {
 
 	private:
 
-		static std::vector<Component*> m_components;
+		static std::vector<Component*>* m_components;
 
 		template<class T>
 		T& getOrCreateExposedValue(std::string key, InspectableType type) {

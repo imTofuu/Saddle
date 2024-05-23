@@ -1,22 +1,30 @@
 #pragma once
 
 #include <SaddleApi.h>
+#include "Objects/Component.h"
 
-SADDLE {
+namespace Saddle {
 
+    class Component;
     class SDL_API EventDispatcher {
     private:
 
-        EventDispatcher();
+        EventDispatcher() {}
+
+        static EventDispatcher* dispatcher;
 
     public:
 
-        static void dispatchPreRender();
+        static EventDispatcher& getMainDispatcher() { return *dispatcher; }
 
-        static void dispatchCreated(Component& component);
-        static void dispatchStart();
-        static void dispatchUpdate(double delta);
+        void dispatchPreRender();
 
-    }
+        void dispatchCreated(Component* component);
+        void dispatchStart();
+        void dispatchUpdate(double delta);
+
+    };
+
+    
 
 }

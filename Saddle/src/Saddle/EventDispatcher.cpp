@@ -1,29 +1,28 @@
 #include "EventDispatcher.h"
 
-#include "Objects/Component.h"
+namespace Saddle {
 
-SADDLE {
+    EventDispatcher* EventDispatcher::dispatcher = new EventDispatcher();
 
-    static void EventDispatcher::dispatchPreRender() {
-        for(auto * component : Component::m_components) {
+    void EventDispatcher::dispatchPreRender() {
+        for(auto * component : *(Component::m_components)) {
             component->preRender();
         }
     }
 
-    static void EventDispatcher::dispatchCreated(Component& component) {
+void EventDispatcher::dispatchCreated(Component* component) {
         component->created();
     }
 
-    static void EventDispatcher::dispatchStart() {
-        for(auto * component : Component::m_components) {
+    void EventDispatcher::dispatchStart() {
+        for(auto * component : *(Component::m_components)) {
             component->start();
         }
     }
 
-    static void EventDispatcher::dispatchUpdate(double delta) {
-        for(auto * component : Component::m_components) {
+    void EventDispatcher::dispatchUpdate(double delta) {
+        for(auto * component : *(Component::m_components)) {
             component->update(delta);
         }
     }
-
 }

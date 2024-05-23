@@ -1,6 +1,6 @@
 #include "Scene.h"
 
-SADDLE {
+namespace Saddle {
 
     Scene* Scene::m_activeScene = nullptr;
 

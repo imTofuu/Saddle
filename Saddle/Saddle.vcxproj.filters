@@ -40,6 +40,12 @@
     <ClInclude Include="src\Saddle\Application.h">
       <Filter>Saddle</Filter>
     </ClInclude>
+    <ClInclude Include="src\Saddle\EventDispatcher.h">
+      <Filter>Saddle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Saddle\Inspectable.h">
+      <Filter>Saddle</Filter>
+    </ClInclude>
     <ClInclude Include="src\Saddle\Logging\Loggable.h">
       <Filter>Saddle\Logging</Filter>
     </ClInclude>
@@ -70,13 +76,15 @@
     <ClInclude Include="src\util\Vector3.h">
       <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="src\Saddle\Inspectable.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Global\SaddleComponents.cpp">
       <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="src\Saddle\Application.cpp">
+      <Filter>Saddle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Saddle\EventDispatcher.cpp">
       <Filter>Saddle</Filter>
     </ClCompile>
     <ClCompile Include="src\Saddle\Logging\Logger.cpp">

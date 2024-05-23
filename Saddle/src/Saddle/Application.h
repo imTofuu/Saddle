@@ -2,7 +2,7 @@
 
 #include "./../Global/SaddleApi.h"
 
-SADDLE {
+namespace Saddle {
 
 	class SDL_API Application {
 	public:

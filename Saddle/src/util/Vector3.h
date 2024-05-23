@@ -2,7 +2,7 @@
 
 #include <SaddleLogging.h>
 
-SADDLE {
+namespace Saddle {
 
 	class SDL_API Vector3 : public Loggable {
 	public:

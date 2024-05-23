@@ -2,7 +2,7 @@
 
 #include <SaddleApi.h>
 
-SADDLE {
+namespace Saddle {
 
 	enum InspectableType {
 

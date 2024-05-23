@@ -6,7 +6,7 @@
 
 #include <vector>
 
-SADDLE {
+namespace Saddle {
     class Object;
 
     /**

@@ -8,6 +8,7 @@
 
 namespace Saddle {
 	class Component;
+	class EventDispatcher;
 
 	/**
      * \brief Saddle Object class. An object contains 
@@ -93,7 +94,7 @@ namespace Saddle {
 	T& Object::addComponent() {
 		T* component = new T(*this);
 		m_components->emplace(T::id(), component);
-		EventDispatcher::dispatchCreated();
+		EventDispatcher::getMainDispatcher().dispatchCreated(component);
 		return *component;
 	}
 

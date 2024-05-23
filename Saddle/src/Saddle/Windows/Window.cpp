@@ -12,9 +12,9 @@
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 
-#include "EventDispatcher.h"
+#include "./../EventDispatcher.h"
 
-SADDLE {
+namespace Saddle {
 	Window* Window::m_activeWindow = nullptr;
 
 	Window::Window(const WindowProperties& properties) {
@@ -48,7 +48,6 @@ SADDLE {
 		ImGui::StyleColorsDark();
 		success &= ImGui_ImplGlfw_InitForOpenGL(m_glfwwindow, true);
 		success &= ImGui_ImplOpenGL3_Init();
-		ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 		SDL_CORE_ASSERT(success, "Failed to initialise imgui");
 		coreLogger.log("imgui initialised", Logger::DEBUG);
 
@@ -116,9 +115,14 @@ SADDLE {
 		}
 
 		ImGui::Text("Explorer");
-
-		ImGui::
 	}
+
+	double frameTimeMillis = 0;
+	int framesLastSecond = 0;
+	int framesThisSecond = 0;
+	double frameTimeAvg = 0;
+	double thisavg = 0;
+	Timer fpsTimer(true);
 
 	void doImGui() {
 		ImGui_ImplOpenGL3_NewFrame();
@@ -131,14 +135,7 @@ SADDLE {
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 	}
 
-	double frameTimeMillis = 0;
-	int framesLastSecond = 0;
-	int framesThisSecond = 0;
-	double frameTimeAvg = 0;
-	double thisavg = 0;
-	Timer fpsTimer(true);
-
-	void updateFPS() {
+	void updateFPS(Timer& timer) {
 		framesThisSecond++;
 		thisavg += frameTimeMillis;
 		if (fpsTimer.current() >= 1000) {
@@ -170,8 +167,8 @@ SADDLE {
 
 		m_shouldstop = glfwWindowShouldClose(m_glfwwindow);
 
-		updateFPS();
+		updateFPS(timer);
 
-		EventDispatcher::dispatchUpdate(frameTimeMillis);
+		EventDispatcher::getMainDispatcher().dispatchUpdate(frameTimeMillis);
 	}
 }

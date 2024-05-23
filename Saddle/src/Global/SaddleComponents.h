@@ -3,7 +3,7 @@
 #include <SaddleObjects.h>
 #include <Vector3.h>
 
-SADDLE {
+namespace Saddle {
 
 	class SDL_API TransformComponent : public Component {
 	public:

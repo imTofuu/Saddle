@@ -107,6 +107,7 @@
     <ClInclude Include="src\Global\SaddleObjects.h" />
     <ClInclude Include="src\Saddle.h" />
     <ClInclude Include="src\Saddle\Application.h" />
+    <ClInclude Include="src\Saddle\EventDispatcher.h" />
     <ClInclude Include="src\Saddle\Inspectable.h" />
     <ClInclude Include="src\Saddle\Logging\Loggable.h" />
     <ClInclude Include="src\Saddle\Logging\Logger.h" />
@@ -122,6 +123,7 @@
   <ItemGroup>
     <ClCompile Include="src\Global\SaddleComponents.cpp" />
     <ClCompile Include="src\Saddle\Application.cpp" />
+    <ClCompile Include="src\Saddle\EventDispatcher.cpp" />
     <ClCompile Include="src\Saddle\Logging\Logger.cpp" />
     <ClCompile Include="src\Saddle\Objects\Component.cpp" />
     <ClCompile Include="src\Saddle\Objects\Object.cpp" />

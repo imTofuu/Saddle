@@ -4,7 +4,7 @@
 #include <SaddleObjects.h>
 #include "EventDispatcher.h"
 
-SADDLE {
+namespace Saddle {
 
 	Application::Application() {}
 
@@ -15,7 +15,7 @@ SADDLE {
 
 		Window window;
 
-		EventDispatcher::dispatchStart();
+		EventDispatcher::getMainDispatcher().dispatchStart();
 
 		Logger::getCoreLogger().log("Main loop started", Logger::INFO);
 

@@ -15,6 +15,4 @@ namespace Saddle {
 	#else
 		#error Saddle only has support for Windows.
 	#endif
-
-	#define SADDLE namespace Saddle
 }
