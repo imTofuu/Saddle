@@ -11,10 +11,6 @@ namespace Saddle {
 	Application::~Application() {}
 
 	void Application::Run() {
-		Logger::initLoggers();
-
-		Window window;
-
 		EventDispatcher::getMainDispatcher().dispatchStart();
 
 		Logger::getCoreLogger().log("Main loop started", Logger::INFO);

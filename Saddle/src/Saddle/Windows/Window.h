@@ -7,53 +7,13 @@
 
 namespace Saddle {
 
-	/**
-	 * \brief Contains window properties used for window initialisation.
-	*/
-	struct SDL_API WindowProperties {
-		/**
-		 * \brief Width of the window.
-		*/
-		int w;
+	enum WindowFlags {
 
-		/**
-		 * \brief Height of the window.
-		*/
-		int h;
+		SaddleWindowFlags_UseVsync = 1,
 
+		SaddleWindowFlags_StartMaximised = 1 << 1;
 
-		/**
-		 * \brief Name of the window.
-		*/
-		std::string title;
-
-		/**
-		 * \brief Whether the window used vsync or not.
-		*/
-		bool vsync;
-
-		/**
-		 * \brief Whether the window is maximised.
-		*/
-		bool maximised;
-
-
-		/**
-		 * \brief Creates an instance used to initialise a window.
-		 * 
-		 * \param Title The name of the window.
-		 * 
-		 * \param width The width of the window.
-		 * 
-		 * \param height The height of the window.
-		 * 
-		 * \param Vsync Whether the window uses vsync or not.
-		 * 
-		 * \param Maximised Whether the window is maximised or not.
-		*/
-		WindowProperties(const std::string& Title, int width, int height, bool Vsync, bool Maximised) : 
-			w(width), h(height), title(Title), vsync(Vsync), maximised(Maximised) {}
-	};
+	}
 
 	class Application;
 	
@@ -75,7 +35,7 @@ namespace Saddle {
 		 * values are name: Saddle Window, w h: 1280 720, vsync: false,
 		 * maximised: true.
 		*/
-		Window(const WindowProperties& properties = WindowProperties {"Saddle Window", 1280, 720, false, true});
+		Window(const std::string& title, int width, int height, uint64_t flags = 0);
 
 
 		/**

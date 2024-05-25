@@ -17,7 +17,7 @@
 namespace Saddle {
 	Window* Window::m_activeWindow = nullptr;
 
-	Window::Window(const WindowProperties& properties) {
+	Window::Window(const std::string& title, int width, int height, uint64_t flags = 0) {
 		if (!m_activeWindow) m_activeWindow = this;
 
 		const Logger& coreLogger = Logger::getCoreLogger();
@@ -45,6 +45,7 @@ namespace Saddle {
 		success = true;
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
+		ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 		ImGui::StyleColorsDark();
 		success &= ImGui_ImplGlfw_InitForOpenGL(m_glfwwindow, true);
 		success &= ImGui_ImplOpenGL3_Init();
