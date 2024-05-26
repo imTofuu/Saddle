@@ -1,11 +1,10 @@
 #pragma once
 
 #include <string>
-#include <SaddleApi.h>
+#include "../SaddleApi.h"
 
 namespace Saddle {
-	class SDL_API Loggable
-	{
+	class SDL_API Loggable {
 	public:
 
 		virtual std::string toString(int indents) const = 0;

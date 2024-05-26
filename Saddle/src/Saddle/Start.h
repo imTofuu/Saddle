@@ -1,8 +1,8 @@
 #pragma once
 
-extern Saddle::Application* Saddle::createApplication();
+extern void Saddle::Start();
 
 int main(int argc, char** argv) {
-	auto app = Saddle::createApplication();
-	app->Run();
+	Saddle::Application app;
+	app.Run(Saddle::Start);
 }

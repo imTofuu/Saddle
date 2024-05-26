@@ -1,4 +1,5 @@
 #include "EventDispatcher.h"
+#include "Objects/Component.h"
 
 namespace Saddle {
 

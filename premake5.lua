@@ -28,9 +28,6 @@ project "Saddle"
 		}
 
 		includedirs {
-			"Saddle/src/Global",
-			"Saddle/src/util",
-
 			"dependencies/GLFW/include",
 			"dependencies/imgui",
 			"dependencies/glad/include",

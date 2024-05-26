@@ -22,14 +22,18 @@ namespace Saddle {
 
 		const Logger& coreLogger = Logger::getCoreLogger();
 
+		m_title = title;
+		m_width = width;
+		m_height = height;
+		m_flags = flags;
+
 		// Creating copy of properties and logging them
-		this->m_properties = new WindowProperties(properties);
 		coreLogger.log("Initialising window with properties:\n", Logger::INFO, *this);
 
 		// Validating GLFW
 		bool success = true;
 		success &= glfwInit();
-		m_glfwwindow = glfwCreateWindow(properties.w, properties.h, properties.title.c_str(), nullptr, nullptr);
+		m_glfwwindow = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
 		success &= m_glfwwindow != 0;
 		glfwMakeContextCurrent(m_glfwwindow);
 		SDL_CORE_ASSERT(success, "Failed to initialise GLFW");
@@ -45,40 +49,30 @@ namespace Saddle {
 		success = true;
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
-		ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+		//ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 		ImGui::StyleColorsDark();
 		success &= ImGui_ImplGlfw_InitForOpenGL(m_glfwwindow, true);
 		success &= ImGui_ImplOpenGL3_Init();
 		SDL_CORE_ASSERT(success, "Failed to initialise imgui");
 		coreLogger.log("imgui initialised", Logger::DEBUG);
 
-		setVsync(this->m_properties->vsync);
-		setMaximised(this->m_properties->maximised);
+		glfwSwapInterval(flags & SaddleWindowFlags_UseVsync);
+		if (flags & SaddleWindowFlags_StartMaximised) glfwMaximizeWindow(m_glfwwindow);
 
 		coreLogger.log("Window properties applied", Logger::DEBUG);
-
-		Scene& scene = Scene::createScene();
-		Object& obj = scene.addObject("valuetest");
-		TransformComponent& tfc = obj.addComponent<TransformComponent>();
-		tfc.position.x = 5;
-		scene.addObject("gergs");
-		coreLogger.log(Logger::INFO, scene);
 	}
 
 	std::string Window::toString(int indents) const
 	{
-		std::string str = m_properties->title += ":\n";
+		std::string str = m_title + ":\n";
 		str += std::string(indents + 1, '	') += "width: ";
-		str += std::to_string(m_properties->w);
+		str += std::to_string(m_width);
 		str += "\n";
 		str += std::string(indents + 1, '	') += "height: ";
-		str += std::to_string(m_properties->h);
+		str += std::to_string(m_height);
 		str += "\n";
-		str += std::string(indents + 1, '	') += "vsync: ";
-		str += m_properties->vsync ? "true" : "false";
-		str += "\n";
-		str += std::string(indents + 1, '	') += "maximised: ";
-		str += m_properties->maximised ? "true" : "false";
+		str += std::string(indents + 1, '	') += "flags: ";
+		str += m_flags;
 		str += "\n";
 		return str;
 	}

@@ -59,7 +59,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>SDL_PLATFORM_WINDOWS;SDL_BUILD_DLL;SDL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src\Global;src\util;..\dependencies\GLFW\include;..\dependencies\imgui;..\dependencies\glad\include;..\dependencies\imgui\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\dependencies\GLFW\include;..\dependencies\imgui;..\dependencies\glad\include;..\dependencies\imgui\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -80,7 +80,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>SDL_PLATFORM_WINDOWS;SDL_BUILD_DLL;SDL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src\Global;src\util;..\dependencies\GLFW\include;..\dependencies\imgui;..\dependencies\glad\include;..\dependencies\imgui\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\dependencies\GLFW\include;..\dependencies\imgui;..\dependencies\glad\include;..\dependencies\imgui\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -101,10 +101,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Global\SaddleApi.h" />
-    <ClInclude Include="src\Global\SaddleComponents.h" />
-    <ClInclude Include="src\Global\SaddleLogging.h" />
-    <ClInclude Include="src\Global\SaddleObjects.h" />
+    <ClInclude Include="src\Saddle\SaddleApi.h" />
+    <ClInclude Include="src\Saddle\Objects\SaddleComponents.h" />
     <ClInclude Include="src\Saddle.h" />
     <ClInclude Include="src\Saddle\Application.h" />
     <ClInclude Include="src\Saddle\EventDispatcher.h" />
@@ -116,12 +114,12 @@
     <ClInclude Include="src\Saddle\Scenes\Scene.h" />
     <ClInclude Include="src\Saddle\Start.h" />
     <ClInclude Include="src\Saddle\Windows\Window.h" />
-    <ClInclude Include="src\util\Color.h" />
-    <ClInclude Include="src\util\Timer.h" />
-    <ClInclude Include="src\util\Vector3.h" />
+    <ClInclude Include="src\Saddle\util\Color.h" />
+    <ClInclude Include="src\Saddle\util\Timer.h" />
+    <ClInclude Include="src\Saddle\util\Vector3.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Global\SaddleComponents.cpp" />
+    <ClCompile Include="src\Saddle\Objects\SaddleComponents.cpp" />
     <ClCompile Include="src\Saddle\Application.cpp" />
     <ClCompile Include="src\Saddle\EventDispatcher.cpp" />
     <ClCompile Include="src\Saddle\Logging\Logger.cpp" />
@@ -129,7 +127,7 @@
     <ClCompile Include="src\Saddle\Objects\Object.cpp" />
     <ClCompile Include="src\Saddle\Scenes\Scene.cpp" />
     <ClCompile Include="src\Saddle\Windows\Window.cpp" />
-    <ClCompile Include="src\util\Timer.cpp" />
+    <ClCompile Include="src\Saddle\util\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\dependencies\GLFW\GLFW.vcxproj">

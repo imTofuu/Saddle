@@ -1,11 +1,7 @@
 #include <Saddle.h>
 
-class RunEnv : public Saddle::Application {
-public:
-	RunEnv() {}
-	~RunEnv() {}
-};
+#include "Saddle/Logging/Logger.h"
 
-Saddle::Application* Saddle::createApplication() {
-	return new RunEnv();
+void Saddle::Start() {
+	Logger::getClientLogger().log("rgwfe", Logger::DEBUG);
 }

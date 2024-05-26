@@ -1,10 +1,10 @@
 #pragma once
 
-#include <SaddleApi.h>
+#include "SaddleApi.h"
 
 namespace Saddle {
 
-	enum InspectableType {
+	enum SDL_API InspectableType {
 
 		NUMBER,
 

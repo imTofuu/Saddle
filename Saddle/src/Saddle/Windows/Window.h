@@ -11,9 +11,9 @@ namespace Saddle {
 
 		SaddleWindowFlags_UseVsync = 1,
 
-		SaddleWindowFlags_StartMaximised = 1 << 1;
+		SaddleWindowFlags_StartMaximised = 1 << 1
 
-	}
+	};
 
 	class Application;
 	
@@ -35,53 +35,16 @@ namespace Saddle {
 		 * values are name: Saddle Window, w h: 1280 720, vsync: false,
 		 * maximised: true.
 		*/
-		Window(const std::string& title, int width, int height, uint64_t flags = 0);
-
+		Window(const std::string& title, int width, int height, uint64_t flags);
 
 		/**
 		 * \returns A reference to the active window.
 		*/
-		inline static Window& getActiveWindow() { return *m_activeWindow; }
-
-
-		/**
-		 * \returns The width of the window.
-		*/
-		inline int w() const { return m_properties->w; }
-
-		/**
-		 * \returns The height of the window.
-		*/
-		inline int h() const { return m_properties->h; }
-
-
-		/**
-		 * \returns Whether the window uses vsync or not.
-		*/
-		inline bool hasVsync() const { return m_vsync; }
-
-		/**
-		 * \param vsync Sets whether the window uses vsync or not.
-		*/
-		inline void setVsync(bool vsync) { glfwSwapInterval(vsync); this->m_vsync = vsync; }
-
-
-		/**
-		 * \returns Whether the window is maximised or not.
-		*/
-		inline bool isMaximised() const { return m_maximised; }
-
-		/**
-		 * \param maximised Sets whether the window is maximised or not.
-		*/
-		inline void setMaximised(bool maximised) { if (maximised) glfwMaximizeWindow(m_glfwwindow); this->m_maximised = maximised; }
+		inline static Window* getActiveWindow() { return m_activeWindow; }
 
 		std::string toString(int indents) const override;
 
 	private:
-
-		bool m_vsync;
-		bool m_maximised;
 
 		friend class Application;
 
@@ -90,8 +53,12 @@ namespace Saddle {
 		inline bool shouldStop() const { return m_shouldstop; }
 
 		static Window* m_activeWindow;
-		WindowProperties* m_properties;
 		GLFWwindow* m_glfwwindow;
+
+		std::string m_title;
+
+		int m_width, m_height;
+		uint64_t m_flags;
 
 		bool m_shouldstop = false;
 	};

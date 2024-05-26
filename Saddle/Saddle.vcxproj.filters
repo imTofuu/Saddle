@@ -24,16 +24,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Global\SaddleApi.h">
+    <ClInclude Include="src\Saddle\SaddleApi.h">
       <Filter>Global</Filter>
     </ClInclude>
-    <ClInclude Include="src\Global\SaddleComponents.h">
-      <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Global\SaddleLogging.h">
-      <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Global\SaddleObjects.h">
+    <ClInclude Include="src\Saddle\Objects\SaddleComponents.h">
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="src\Saddle.h" />
@@ -67,18 +61,18 @@
     <ClInclude Include="src\Saddle\Windows\Window.h">
       <Filter>Saddle\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\util\Color.h">
+    <ClInclude Include="src\Saddle\util\Color.h">
       <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="src\util\Timer.h">
+    <ClInclude Include="src\Saddle\util\Timer.h">
       <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="src\util\Vector3.h">
+    <ClInclude Include="src\Saddle\util\Vector3.h">
       <Filter>util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Global\SaddleComponents.cpp">
+    <ClCompile Include="src\Saddle\Objects\SaddleComponents.cpp">
       <Filter>Global</Filter>
     </ClCompile>
     <ClCompile Include="src\Saddle\Application.cpp">
@@ -102,7 +96,7 @@
     <ClCompile Include="src\Saddle\Windows\Window.cpp">
       <Filter>Saddle\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\util\Timer.cpp">
+    <ClCompile Include="src\Saddle\util\Timer.cpp">
       <Filter>util</Filter>
     </ClCompile>
   </ItemGroup>

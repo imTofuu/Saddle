@@ -1,6 +1,6 @@
 #pragma once
 
-#include "./../Global/SaddleApi.h"
+#include "SaddleApi.h"
 
 namespace Saddle {
 
@@ -9,9 +9,9 @@ namespace Saddle {
 		Application();
 		virtual ~Application();
 
-		void Run();
+		void Run(void (*run)());
 	};
 
-	Application* createApplication();
+	void Start();
 
 }
