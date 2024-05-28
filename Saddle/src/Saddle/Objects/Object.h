@@ -1,10 +1,9 @@
 #pragma once
 
-#include <SaddleLogging.h>
-#include "Component.h"
+#include "../Logging/Loggable.h"
 #include <unordered_map>
 
-#include "./../EventDispatcher.h"
+#include "../EventDispatcher.h"
 
 namespace Saddle {
 	class Component;
@@ -40,6 +39,9 @@ namespace Saddle {
 		 * \return A reference to the component, if the object has it. If the
 		 * object does not have a component of type T an exception will be
 		 * thrown.
+		 * 
+		 * TODO: test alternative method that doesn't require id() method
+		 * (dynamic casting)
 		*/
 		template<class T> T& getComponent();
 

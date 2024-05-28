@@ -4,15 +4,15 @@
 
 #include "Window.h"
 
-#include <SaddleComponents.h>
-
-#include <Timer.h>
-
-#include <imgui.h>
-#include <imgui_impl_glfw.h>
-#include <imgui_impl_opengl3.h>
+#include "../util/Timer.h"
 
 #include "./../EventDispatcher.h"
+
+#include "../Logging/Logger.h"
+
+#include "../Layers/LayerManager.h"
+
+#include "../Layers/ImGuiLayer.h"
 
 namespace Saddle {
 	Window* Window::m_activeWindow = nullptr;
@@ -77,32 +77,6 @@ namespace Saddle {
 		return str;
 	}
 
-	void showStats(double ft, int fps, double fta) {
-		// Break out if not visible, collapsed
-		if (!ImGui::Begin("Statistics")) {
-			ImGui::End();
-			return;
-		}
-
-		std::string frameTimeString = std::to_string(ft);
-		frameTimeString += "ms (Frame time)";
-		ImGui::Text(frameTimeString.c_str());
-
-		std::string frameTimeAvg = std::to_string(fta / fps);
-		frameTimeAvg += "ms (Frame average last second)";
-		ImGui::Text(frameTimeAvg.c_str());
-
-		std::string fpsCurrentString = std::to_string((int)(1000 / ft));
-		fpsCurrentString += " fps (Current)";
-		ImGui::Text(fpsCurrentString.c_str());
-
-		std::string fpsLastString = std::to_string(fps);
-		fpsLastString += " fps (Last second)";
-		ImGui::Text(fpsLastString.c_str());
-
-		ImGui::End();
-	}
-
 	void explorer() {
 		if(!ImGui::Begin("Explorer")) {
 			ImGui::End();
@@ -112,23 +86,12 @@ namespace Saddle {
 		ImGui::Text("Explorer");
 	}
 
-	double frameTimeMillis = 0;
-	int framesLastSecond = 0;
-	int framesThisSecond = 0;
-	double frameTimeAvg = 0;
-	double thisavg = 0;
-	Timer fpsTimer(true);
-
-	void doImGui() {
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
-		
-		showStats(frameTimeMillis, framesLastSecond, frameTimeAvg);
-
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-	}
+	static double frameTimeMillis = 0;
+	static int framesLastSecond = 0;
+	static int framesThisSecond = 0;
+	static double frameTimeAvg = 0;
+	static double thisavg = 0;
+	static Timer fpsTimer(true);
 
 	void updateFPS(Timer& timer) {
 		framesThisSecond++;
@@ -146,7 +109,39 @@ namespace Saddle {
 		frameTimeMillis = timer.current();
 	}
 
+	ImGuiLayer& imguilayer = LayerManager::addLayer<ImGuiLayer>(0);
+
 	void Window::update() {
+
+		// Make stats window
+		PassedArgs args;
+		args.next(&frameTimeMillis);
+		args.next(&frameTimeAvg);
+		args.next(&framesLastSecond);
+        imguilayer.addImGuiObjectForFrame([] (const PassedArgs* args) -> void {
+            if(!ImGui::Begin("Statistics")) {
+                ImGui::End();
+                return;
+            }
+            
+            std::string fts = std::to_string(*(double*)(*args)[0]);
+            fts += "ms (Frame time)";
+            ImGui::Text(fts.c_str());
+
+            std::string fta = std::to_string((*(double*)(*args)[1]) / (*(double*)(*args)[2]));
+            fta += "ms (Frame time average last second)";
+            ImGui::Text(fta.c_str());
+
+            std::string fpsc = std::to_string((int)(1000 / (*(double*)(*args)[0])));
+            fpsc += "fps (Current)";
+            ImGui::Text(fpsc.c_str());
+
+            std::string fpsa = std::to_string(*(double*)(*args)[2]);
+            fpsa += "fps (Last second)";
+            ImGui::Text(fpsa.c_str());
+
+            ImGui::End();
+        }, &args);
 
 		Timer timer;
 		timer.start();
@@ -156,7 +151,10 @@ namespace Saddle {
 
 		glfwPollEvents();
 
-		doImGui();
+		//doImGui();
+		for(auto & layer : LayerManager::getLayers()) {
+			layer->onUpdate(0);
+		}
 
 		glfwSwapBuffers(m_glfwwindow);
 

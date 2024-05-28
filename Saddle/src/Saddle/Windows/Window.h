@@ -1,13 +1,14 @@
 #pragma once
 
-#include <SaddleLogging.h>
-#include <SaddleApi.h>
+#include "../Logging/Loggable.h"
+#include "../SaddleApi.h"
+#include "../Application.h"
+
 #include <GLFW/glfw3.h>
-#include "./../Application.h"
 
 namespace Saddle {
 
-	enum WindowFlags {
+	enum SDL_API WindowFlags {
 
 		SaddleWindowFlags_UseVsync = 1,
 
@@ -40,7 +41,7 @@ namespace Saddle {
 		/**
 		 * \returns A reference to the active window.
 		*/
-		inline static Window* getActiveWindow() { return m_activeWindow; }
+		static Window* getActiveWindow() { return m_activeWindow; }
 
 		std::string toString(int indents) const override;
 

@@ -1,5 +1,7 @@
 #include "Logger.h"
 
+#include "Loggable.h"
+
 namespace Saddle {
     Logger* Logger::m_clientLogger = nullptr;
     Logger* Logger::m_coreLogger = nullptr;
@@ -36,7 +38,10 @@ namespace Saddle {
         }
         std::cout << color << "[" << getAlias() << "] " << message << "\033[0m" << std::endl;
         if (severity == Saddle::Logger::FATAL)
-            __debugbreak();
+            #ifndef LAPTOP
+                __debugbreak()
+            #endif
+            ;
     }
 
     void Logger::log(Severity severity, const Loggable& loggable) const {

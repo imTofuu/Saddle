@@ -1,24 +1,27 @@
 #pragma once
 
-#include <SaddleLogging.h>
+#include "../Logging/Loggable.h"
 #include "./../Inspectable.h"
-#include <Color.h>
-#include <Vector3.h>
+
+#include "../util/Color.h"
+#include "../util/Vector3.h"
 
 #include <unordered_map>
-
-#include "Object.h"
+#include <vector>
 
 #include "./../EventDispatcher.h"
 
 namespace Saddle {
 	class EventDispatcher;
+	class Object;
 	class SDL_API Component : public Loggable {
 	private:
 		friend class Object;
 		friend class EventDispatcher;
 
 	public:
+
+		virtual ~Component();
 		
 		std::string toString(int indents) const override;
 
@@ -59,7 +62,6 @@ namespace Saddle {
 	protected:
 
 		Component(Object& object) : m_object(object) { m_components->push_back(this); }
-		virtual ~Component();
 
 		template<class T> T& addDependency() { return m_object.addComponentAsDependency<T>(); }
 

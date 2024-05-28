@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SaddleLogging.h>
+#include "../Logging/Loggable.h"
 
 namespace Saddle {
 

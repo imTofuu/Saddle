@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Loggable.h"
-#include <SaddleApi.h>
+#include "../SaddleApi.h"
 
 #include <string>
 #include <iostream>
 
 namespace Saddle {
+	class Loggable;
 	class SDL_API Logger {
 	public:
 		enum Severity {

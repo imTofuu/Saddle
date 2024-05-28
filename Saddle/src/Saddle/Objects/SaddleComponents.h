@@ -1,7 +1,7 @@
 #pragma once
 
-#include <SaddleObjects.h>
-#include <Vector3.h>
+#include "Component.h"
+#include "../util/Vector3.h"
 
 namespace Saddle {
 
@@ -20,7 +20,8 @@ namespace Saddle {
 
 	class SDL_API SpriteComponent : public Component {
 	public:
-		SpriteComponent(Object& object) : transform(addDependency<TransformComponent>()), Component(object) {  }
+		SpriteComponent(Object& object) : 
+			transform(addDependency<TransformComponent>()), Component(object) {}
 
 		std::string toString(int indents) const override;
 		static std::string id() { return "Sprite"; }

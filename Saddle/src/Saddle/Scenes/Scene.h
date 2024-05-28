@@ -1,8 +1,7 @@
 #pragma once
 
-#include <SaddleApi.h>
-#include <SaddleLogging.h>
-#include "./../Saddle/Objects/Object.h"
+#include "../SaddleApi.h"
+#include "../Logging/Logger.h"
 
 #include <vector>
 

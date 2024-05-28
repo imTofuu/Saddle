@@ -7,7 +7,6 @@ namespace Saddle {
 	class SDL_API Application {
 	public:
 		Application();
-		virtual ~Application();
 
 		void Run(void (*run)());
 	};

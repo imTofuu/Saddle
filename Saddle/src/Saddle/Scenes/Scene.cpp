@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include "../Objects/Object.h"
 
 namespace Saddle {
 

@@ -11,7 +11,7 @@ namespace Saddle {
         }
     }
 
-void EventDispatcher::dispatchCreated(Component* component) {
+    void EventDispatcher::dispatchCreated(Component* component) {
         component->created();
     }
 

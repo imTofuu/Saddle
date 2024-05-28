@@ -1,5 +1,7 @@
 #include "Component.h"
 
+#include "Object.h"
+
 namespace Saddle {
 
 	std::vector<Component*>* Component::m_components = new std::vector<Component*>();
