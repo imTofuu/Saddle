@@ -101,6 +101,10 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Saddle\Layers\ImGuiLayer.h" />
+    <ClInclude Include="src\Saddle\Layers\Layer.h" />
+    <ClInclude Include="src\Saddle\Layers\LayerManager.h" />
+    <ClInclude Include="src\Saddle\PassedArgs.h" />
     <ClInclude Include="src\Saddle\SaddleApi.h" />
     <ClInclude Include="src\Saddle\Objects\SaddleComponents.h" />
     <ClInclude Include="src\Saddle.h" />
@@ -119,12 +123,14 @@
     <ClInclude Include="src\Saddle\util\Vector3.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Saddle\Layers\ImGuiLayer.cpp" />
     <ClCompile Include="src\Saddle\Objects\SaddleComponents.cpp" />
     <ClCompile Include="src\Saddle\Application.cpp" />
     <ClCompile Include="src\Saddle\EventDispatcher.cpp" />
     <ClCompile Include="src\Saddle\Logging\Logger.cpp" />
     <ClCompile Include="src\Saddle\Objects\Component.cpp" />
     <ClCompile Include="src\Saddle\Objects\Object.cpp" />
+    <ClCompile Include="src\Saddle\PassedArgs.cpp" />
     <ClCompile Include="src\Saddle\Scenes\Scene.cpp" />
     <ClCompile Include="src\Saddle\Windows\Window.cpp" />
     <ClCompile Include="src\Saddle\util\Timer.cpp" />

@@ -1,5 +1,7 @@
 #include "PassedArgs.h"
 
+#include "Logging/Logger.h"
+
 namespace Saddle {
 
     void* PassedArgs::operator[](int i) {

@@ -70,6 +70,10 @@
     <ClInclude Include="src\Saddle\util\Vector3.h">
       <Filter>util</Filter>
     </ClInclude>
+    <ClInclude Include="src\Saddle\PassedArgs.h" />
+    <ClInclude Include="src\Saddle\Layers\ImGuiLayer.h" />
+    <ClInclude Include="src\Saddle\Layers\Layer.h" />
+    <ClInclude Include="src\Saddle\Layers\LayerManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Saddle\Objects\SaddleComponents.cpp">
@@ -99,5 +103,7 @@
     <ClCompile Include="src\Saddle\util\Timer.cpp">
       <Filter>util</Filter>
     </ClCompile>
+    <ClCompile Include="src\Saddle\PassedArgs.cpp" />
+    <ClCompile Include="src\Saddle\Layers\ImGuiLayer.cpp" />
   </ItemGroup>
 </Project>

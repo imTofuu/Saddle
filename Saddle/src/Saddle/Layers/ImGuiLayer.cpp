@@ -1,5 +1,7 @@
 #include "ImGuiLayer.h"
 
+#include "../Logging/Logger.h"
+
 #include <string>
 
 namespace Saddle {

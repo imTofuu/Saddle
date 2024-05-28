@@ -16,6 +16,7 @@
 
 namespace Saddle {
 	Window* Window::m_activeWindow = nullptr;
+	ImGuiLayer imguilayer;
 
 	Window::Window(const std::string& title, int width, int height, uint64_t flags = 0) {
 		if (!m_activeWindow) m_activeWindow = this;
@@ -46,15 +47,9 @@ namespace Saddle {
 		coreLogger.log("glad loaded", Logger::DEBUG);
 
 		// Validating imgui
-		success = true;
-		IMGUI_CHECKVERSION();
-		ImGui::CreateContext();
-		//ImGui::GetIO().ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-		ImGui::StyleColorsDark();
-		success &= ImGui_ImplGlfw_InitForOpenGL(m_glfwwindow, true);
-		success &= ImGui_ImplOpenGL3_Init();
-		SDL_CORE_ASSERT(success, "Failed to initialise imgui");
-		coreLogger.log("imgui initialised", Logger::DEBUG);
+		PassedArgs args;
+		args.next(m_glfwwindow);
+		imguilayer = LayerManager::addLayer<ImGuiLayer>(0, &args);
 
 		glfwSwapInterval(flags & SaddleWindowFlags_UseVsync);
 		if (flags & SaddleWindowFlags_StartMaximised) glfwMaximizeWindow(m_glfwwindow);
@@ -72,18 +67,9 @@ namespace Saddle {
 		str += std::to_string(m_height);
 		str += "\n";
 		str += std::string(indents + 1, '	') += "flags: ";
-		str += m_flags;
+		str += std::to_string(m_flags);
 		str += "\n";
 		return str;
-	}
-
-	void explorer() {
-		if(!ImGui::Begin("Explorer")) {
-			ImGui::End();
-			return;
-		}
-
-		ImGui::Text("Explorer");
 	}
 
 	static double frameTimeMillis = 0;
@@ -108,8 +94,6 @@ namespace Saddle {
 
 		frameTimeMillis = timer.current();
 	}
-
-	ImGuiLayer& imguilayer = LayerManager::addLayer<ImGuiLayer>(0);
 
 	void Window::update() {
 

@@ -2,6 +2,7 @@
 
 #include "../SaddleApi.h"
 #include "../Logging/Logger.h"
+#include "../Logging/Loggable.h"
 
 #include <vector>
 

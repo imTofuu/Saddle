@@ -3,6 +3,7 @@
 #include <stdint.h>
 
 namespace Saddle {
+
 	#ifndef LAPTOP
 		#define SDL_CORE_ASSERT(val, msg) if (!val) { Logger::getCoreLogger().log("Assert failed: "  msg, Logger::FATAL); __debugbreak(); }
 		#define SDL_CLIENT_ASSET(val, msg) if (!val) { Logger::getClientLogger().log("Assert failed: "  msg, Logger::FATAL); __debugbreak(); }

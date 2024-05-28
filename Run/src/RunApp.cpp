@@ -10,15 +10,8 @@
 
 void Saddle::Start() {
 
-	Window window("Saddle Editor", 1280, 720, 
+	Window* window = new Window("Saddle Editor", 1280, 720, 
 		SaddleWindowFlags_UseVsync | SaddleWindowFlags_StartMaximised);
-
-	Scene scene = Scene::createScene();
-
-	Object& object = scene.addObject("efgrhtgs");
-	object.addComponent<TransformComponent>();
-
+	Logger::getClientLogger().log(Logger::INFO, *Window::getActiveWindow());
 	
-
-	Logger::getClientLogger().log("rgwfe", Logger::DEBUG);
 }

@@ -1,7 +1,8 @@
 #pragma once
 
 #include "../Logging/Loggable.h"
-#include "./../Inspectable.h"
+#include "../Inspectable.h"
+#include "Object.h"
 
 #include "../util/Color.h"
 #include "../util/Vector3.h"
