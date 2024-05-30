@@ -27,11 +27,11 @@ namespace Saddle {
 		/**
 		 * \return The time since the timer was last started in ms.
 		*/
-		double current();
+		double current() const;
 
 	private:
 
-		std::chrono::time_point<std::chrono::high_resolution_clock> m_startc, m_endc;
+		std::chrono::time_point<std::chrono::high_resolution_clock> m_startc;
 
 	};
 

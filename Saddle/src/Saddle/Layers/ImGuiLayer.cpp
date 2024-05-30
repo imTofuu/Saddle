@@ -9,10 +9,6 @@ namespace Saddle {
     void ImGuiLayer::onLayerAdded(const PassedArgs* args) {
         bool success = true;
         IMGUI_CHECKVERSION();
-        m_imguicontext = ImGui::CreateContext();
-        ImGui::StyleColorsDark();
-        success &= ImGui_ImplGlfw_InitForOpenGL((GLFWwindow*)(*args)[0], true);
-        success &= ImGui_ImplOpenGL3_Init();
         SDL_CORE_ASSERT(success, "Failed to initialise imgui");
     }
 
@@ -31,8 +27,6 @@ namespace Saddle {
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-        m_imguiobjects.clear();
     }
 
 }

@@ -4,14 +4,11 @@
 
 #include "Window.h"
 
+#include "../util/Time.h"
 #include "../util/Timer.h"
-
-#include "./../EventDispatcher.h"
-
+#include "../EventDispatcher.h"
 #include "../Logging/Logger.h"
-
 #include "../Layers/LayerManager.h"
-
 #include "../Layers/ImGuiLayer.h"
 
 namespace Saddle {
@@ -34,7 +31,18 @@ namespace Saddle {
 		// Validating GLFW
 		bool success = true;
 		success &= glfwInit();
-		m_glfwwindow = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
+		const GLFWvidmode* mode = 0;
+		if(flags & SaddleWindowFlags_IsBorderless) {
+			const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+			glfwWindowHint(GLFW_RED_BITS, mode->redBits);
+			glfwWindowHint(GLFW_GREEN_BITS, mode->greenBits);
+			glfwWindowHint(GLFW_BLUE_BITS, mode->blueBits);
+			glfwWindowHint(GLFW_REFRESH_RATE, mode->refreshRate);
+		}
+		glfwWindowHint(GLFW_DECORATED, !(flags & SaddleWindowFlags_IsBorderless));
+		m_glfwwindow = glfwCreateWindow(width, height, title.c_str(), 
+			flags & (SaddleWindowFlags_IsFullscreen | SaddleWindowFlags_IsBorderless) ? 
+				glfwGetPrimaryMonitor() : 0, 0);
 		success &= m_glfwwindow != 0;
 		glfwMakeContextCurrent(m_glfwwindow);
 		SDL_CORE_ASSERT(success, "Failed to initialise GLFW");
@@ -47,14 +55,53 @@ namespace Saddle {
 		coreLogger.log("glad loaded", Logger::DEBUG);
 
 		// Validating imgui
-		PassedArgs args;
-		args.next(m_glfwwindow);
-		imguilayer = LayerManager::addLayer<ImGuiLayer>(0, &args);
+		success = true;
+		IMGUI_CHECKVERSION();
+		ImGuiLayer::m_imguicontext = ImGui::CreateContext();
+		ImGui::StyleColorsDark();
+        success &= ImGui_ImplGlfw_InitForOpenGL(m_glfwwindow, true);
+        success &= ImGui_ImplOpenGL3_Init();
+		SDL_CORE_ASSERT(success, "Failed to load imgui");
+		coreLogger.log("imgui loaded", Logger::DEBUG);
 
 		glfwSwapInterval(flags & SaddleWindowFlags_UseVsync);
 		if (flags & SaddleWindowFlags_StartMaximised) glfwMaximizeWindow(m_glfwwindow);
 
-		coreLogger.log("Window properties applied", Logger::DEBUG);
+		coreLogger.log("Window created applied", Logger::DEBUG);
+	}
+
+	static int framesThisSecond = 0;
+	static Timer fpsTimer(true);
+	static Timer frameTimer;
+
+	void Window::update() {
+
+		frameTimer.start();
+
+		glClearColor(0, 0, 0, 1);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		glfwPollEvents();
+
+		for(auto & layer : LayerManager::getLayers()) {
+			layer->onUpdate(0);
+		}
+
+		glfwSwapBuffers(m_glfwwindow);
+
+		m_shouldstop = glfwWindowShouldClose(m_glfwwindow);
+
+		m_time.delta = frameTimer.current();
+		if(fpsTimer.current() >= 1000) {
+			m_time.fls = framesThisSecond;
+			framesThisSecond = 0;
+			fpsTimer.start();
+		}
+		m_time.fps = 1000 / m_time.delta;
+		m_time.avg_delta = (m_time.delta + m_time.avg_delta) / 2;
+
+
+		EventDispatcher::getMainDispatcher().dispatchUpdate(m_time.delta);
 	}
 
 	std::string Window::toString(int indents) const
@@ -70,82 +117,5 @@ namespace Saddle {
 		str += std::to_string(m_flags);
 		str += "\n";
 		return str;
-	}
-
-	static double frameTimeMillis = 0;
-	static int framesLastSecond = 0;
-	static int framesThisSecond = 0;
-	static double frameTimeAvg = 0;
-	static double thisavg = 0;
-	static Timer fpsTimer(true);
-
-	void updateFPS(Timer& timer) {
-		framesThisSecond++;
-		thisavg += frameTimeMillis;
-		if (fpsTimer.current() >= 1000) {
-			framesLastSecond = framesThisSecond;
-			framesThisSecond = 0;
-
-			frameTimeAvg = thisavg;
-			thisavg = 0;
-
-			fpsTimer.start();
-		}
-
-		frameTimeMillis = timer.current();
-	}
-
-	void Window::update() {
-
-		// Make stats window
-		PassedArgs args;
-		args.next(&frameTimeMillis);
-		args.next(&frameTimeAvg);
-		args.next(&framesLastSecond);
-        imguilayer.addImGuiObjectForFrame([] (const PassedArgs* args) -> void {
-            if(!ImGui::Begin("Statistics")) {
-                ImGui::End();
-                return;
-            }
-            
-            std::string fts = std::to_string(*(double*)(*args)[0]);
-            fts += "ms (Frame time)";
-            ImGui::Text(fts.c_str());
-
-            std::string fta = std::to_string((*(double*)(*args)[1]) / (*(double*)(*args)[2]));
-            fta += "ms (Frame time average last second)";
-            ImGui::Text(fta.c_str());
-
-            std::string fpsc = std::to_string((int)(1000 / (*(double*)(*args)[0])));
-            fpsc += "fps (Current)";
-            ImGui::Text(fpsc.c_str());
-
-            std::string fpsa = std::to_string(*(double*)(*args)[2]);
-            fpsa += "fps (Last second)";
-            ImGui::Text(fpsa.c_str());
-
-            ImGui::End();
-        }, &args);
-
-		Timer timer;
-		timer.start();
-
-		glClearColor(0, 0, 0, 1);
-		glClear(GL_COLOR_BUFFER_BIT);
-
-		glfwPollEvents();
-
-		//doImGui();
-		for(auto & layer : LayerManager::getLayers()) {
-			layer->onUpdate(0);
-		}
-
-		glfwSwapBuffers(m_glfwwindow);
-
-		m_shouldstop = glfwWindowShouldClose(m_glfwwindow);
-
-		updateFPS(timer);
-
-		EventDispatcher::getMainDispatcher().dispatchUpdate(frameTimeMillis);
 	}
 }

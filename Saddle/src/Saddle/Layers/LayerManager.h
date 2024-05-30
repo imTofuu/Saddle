@@ -27,9 +27,8 @@ namespace Saddle {
     template<class T>
     T& LayerManager::addLayer(int i, const PassedArgs* args) {
         auto iterator = m_layers->begin();
-        advance(iterator, i);
         T* t = new T();
-        m_layers->insert(iterator, t);
+        m_layers->insert(iterator + i, t);
         t->onLayerAdded(args);
         return *t;
     }

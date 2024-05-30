@@ -2,6 +2,7 @@
 
 #include "../SaddleApi.h"
 #include "Layer.h"
+#include "../Windows/Window.h"
 
 #include <unordered_map>
 
@@ -11,6 +12,7 @@
 
 namespace Saddle {
 
+    class Window;
     class SDL_API ImGuiLayer : public Layer {
     public:
 
@@ -18,10 +20,12 @@ namespace Saddle {
         void onLayerRemoved(const PassedArgs* args) override;
         void onUpdate(const PassedArgs* args) override;
 
-        void addImGuiObjectForFrame(void (*fn)(const PassedArgs*), PassedArgs* args) { m_imguiobjects.emplace(fn, args); }
+        void addImGuiObject(void (*fn)(const PassedArgs*), PassedArgs* args) { m_imguiobjects.emplace(fn, args); }
     
     private:
-        ImGuiContext* m_imguicontext;
+        friend class Window;
+
+        static ImGuiContext* m_imguicontext;
 
         std::unordered_map<void (*)(const PassedArgs*), PassedArgs*> m_imguiobjects;
     };
