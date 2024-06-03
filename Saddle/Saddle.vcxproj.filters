@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Global">
-      <UniqueIdentifier>{B62B5EB5-A2CD-888B-8B88-9CDF77C90FDC}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Saddle">
       <UniqueIdentifier>{72078FD0-5EA9-B9A6-4764-CDFA33A540F7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Saddle\Layers">
+      <UniqueIdentifier>{F1892A96-5D4A-A6CC-2685-EF499204EBA8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Saddle\Logging">
       <UniqueIdentifier>{083ADF7A-F407-D380-DD9B-43A7C908AFE5}</UniqueIdentifier>
@@ -19,17 +19,11 @@
     <Filter Include="Saddle\Windows">
       <UniqueIdentifier>{AC031EBC-98D1-11C2-8165-82E86DD2ED26}</UniqueIdentifier>
     </Filter>
-    <Filter Include="util">
-      <UniqueIdentifier>{43339F7C-2F6A-A00D-D856-8610C46C1C0F}</UniqueIdentifier>
+    <Filter Include="Saddle\util">
+      <UniqueIdentifier>{1F228CE3-8BD7-04D9-14CC-FEAF8080FBDC}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Saddle\SaddleApi.h">
-      <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Saddle\Objects\SaddleComponents.h">
-      <Filter>Global</Filter>
-    </ClInclude>
     <ClInclude Include="src\Saddle.h" />
     <ClInclude Include="src\Saddle\Application.h">
       <Filter>Saddle</Filter>
@@ -39,6 +33,15 @@
     </ClInclude>
     <ClInclude Include="src\Saddle\Inspectable.h">
       <Filter>Saddle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Saddle\Layers\ImGuiLayer.h">
+      <Filter>Saddle\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Saddle\Layers\Layer.h">
+      <Filter>Saddle\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Saddle\Layers\LayerManager.h">
+      <Filter>Saddle\Layers</Filter>
     </ClInclude>
     <ClInclude Include="src\Saddle\Logging\Loggable.h">
       <Filter>Saddle\Logging</Filter>
@@ -52,6 +55,15 @@
     <ClInclude Include="src\Saddle\Objects\Object.h">
       <Filter>Saddle\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="src\Saddle\Objects\SaddleComponents.h">
+      <Filter>Saddle\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Saddle\PassedArgs.h">
+      <Filter>Saddle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Saddle\SaddleApi.h">
+      <Filter>Saddle</Filter>
+    </ClInclude>
     <ClInclude Include="src\Saddle\Scenes\Scene.h">
       <Filter>Saddle\Scenes</Filter>
     </ClInclude>
@@ -62,28 +74,30 @@
       <Filter>Saddle\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Saddle\util\Color.h">
-      <Filter>util</Filter>
+      <Filter>Saddle\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Saddle\util\Time.h">
+      <Filter>Saddle\util</Filter>
     </ClInclude>
     <ClInclude Include="src\Saddle\util\Timer.h">
-      <Filter>util</Filter>
+      <Filter>Saddle\util</Filter>
     </ClInclude>
     <ClInclude Include="src\Saddle\util\Vector3.h">
-      <Filter>util</Filter>
+      <Filter>Saddle\util</Filter>
     </ClInclude>
-    <ClInclude Include="src\Saddle\PassedArgs.h" />
-    <ClInclude Include="src\Saddle\Layers\ImGuiLayer.h" />
-    <ClInclude Include="src\Saddle\Layers\Layer.h" />
-    <ClInclude Include="src\Saddle\Layers\LayerManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Saddle\Objects\SaddleComponents.cpp">
-      <Filter>Global</Filter>
-    </ClCompile>
     <ClCompile Include="src\Saddle\Application.cpp">
       <Filter>Saddle</Filter>
     </ClCompile>
     <ClCompile Include="src\Saddle\EventDispatcher.cpp">
       <Filter>Saddle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Saddle\Layers\ImGuiLayer.cpp">
+      <Filter>Saddle\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Saddle\Layers\LayerManager.cpp">
+      <Filter>Saddle\Layers</Filter>
     </ClCompile>
     <ClCompile Include="src\Saddle\Logging\Logger.cpp">
       <Filter>Saddle\Logging</Filter>
@@ -94,6 +108,12 @@
     <ClCompile Include="src\Saddle\Objects\Object.cpp">
       <Filter>Saddle\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="src\Saddle\Objects\SaddleComponents.cpp">
+      <Filter>Saddle\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Saddle\PassedArgs.cpp">
+      <Filter>Saddle</Filter>
+    </ClCompile>
     <ClCompile Include="src\Saddle\Scenes\Scene.cpp">
       <Filter>Saddle\Scenes</Filter>
     </ClCompile>
@@ -101,9 +121,7 @@
       <Filter>Saddle\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Saddle\util\Timer.cpp">
-      <Filter>util</Filter>
+      <Filter>Saddle\util</Filter>
     </ClCompile>
-    <ClCompile Include="src\Saddle\PassedArgs.cpp" />
-    <ClCompile Include="src\Saddle\Layers\ImGuiLayer.cpp" />
   </ItemGroup>
 </Project>

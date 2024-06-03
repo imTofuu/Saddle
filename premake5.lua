@@ -19,6 +19,8 @@ project "Saddle"
 		kind "SharedLib"
 		language "C++"
 
+		disablewarnings { "4257" }
+
 		targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 		objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
@@ -81,6 +83,8 @@ project "Run"
 	location "Run"
 	kind "ConsoleApp"
 
+	disablewarnings { "4257" }
+
 	language "C++"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -92,11 +96,14 @@ project "Run"
 	}
 
 	includedirs {
-		"Saddle/src"
+		"Saddle/src",
+		"dependencies/imgui",
+		"dependencies/imgui/backends"
 	}
 
 	links {
-		"Saddle"
+		"Saddle",
+		"imgui"
 	}
 
 	filter "system:windows"

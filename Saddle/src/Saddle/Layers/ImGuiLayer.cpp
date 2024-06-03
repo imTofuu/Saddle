@@ -6,6 +6,8 @@
 
 namespace Saddle {
 
+    ImGuiContext* ImGuiLayer::m_imguicontext = nullptr;
+
     void ImGuiLayer::onLayerAdded(const PassedArgs* args) {
         bool success = true;
         IMGUI_CHECKVERSION();

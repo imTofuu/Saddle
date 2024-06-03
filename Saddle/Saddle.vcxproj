@@ -58,6 +58,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4257;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PreprocessorDefinitions>SDL_PLATFORM_WINDOWS;SDL_BUILD_DLL;SDL_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\dependencies\GLFW\include;..\dependencies\imgui;..\dependencies\glad\include;..\dependencies\imgui\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
@@ -79,6 +80,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <DisableSpecificWarnings>4257;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PreprocessorDefinitions>SDL_PLATFORM_WINDOWS;SDL_BUILD_DLL;SDL_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\dependencies\GLFW\include;..\dependencies\imgui;..\dependencies\glad\include;..\dependencies\imgui\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
@@ -101,35 +103,37 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Saddle\Layers\ImGuiLayer.h" />
-    <ClInclude Include="src\Saddle\Layers\Layer.h" />
-    <ClInclude Include="src\Saddle\Layers\LayerManager.h" />
-    <ClInclude Include="src\Saddle\PassedArgs.h" />
-    <ClInclude Include="src\Saddle\SaddleApi.h" />
-    <ClInclude Include="src\Saddle\Objects\SaddleComponents.h" />
     <ClInclude Include="src\Saddle.h" />
     <ClInclude Include="src\Saddle\Application.h" />
     <ClInclude Include="src\Saddle\EventDispatcher.h" />
     <ClInclude Include="src\Saddle\Inspectable.h" />
+    <ClInclude Include="src\Saddle\Layers\ImGuiLayer.h" />
+    <ClInclude Include="src\Saddle\Layers\Layer.h" />
+    <ClInclude Include="src\Saddle\Layers\LayerManager.h" />
     <ClInclude Include="src\Saddle\Logging\Loggable.h" />
     <ClInclude Include="src\Saddle\Logging\Logger.h" />
     <ClInclude Include="src\Saddle\Objects\Component.h" />
     <ClInclude Include="src\Saddle\Objects\Object.h" />
+    <ClInclude Include="src\Saddle\Objects\SaddleComponents.h" />
+    <ClInclude Include="src\Saddle\PassedArgs.h" />
+    <ClInclude Include="src\Saddle\SaddleApi.h" />
     <ClInclude Include="src\Saddle\Scenes\Scene.h" />
     <ClInclude Include="src\Saddle\Start.h" />
     <ClInclude Include="src\Saddle\Windows\Window.h" />
     <ClInclude Include="src\Saddle\util\Color.h" />
+    <ClInclude Include="src\Saddle\util\Time.h" />
     <ClInclude Include="src\Saddle\util\Timer.h" />
     <ClInclude Include="src\Saddle\util\Vector3.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Saddle\Layers\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Saddle\Objects\SaddleComponents.cpp" />
     <ClCompile Include="src\Saddle\Application.cpp" />
     <ClCompile Include="src\Saddle\EventDispatcher.cpp" />
+    <ClCompile Include="src\Saddle\Layers\ImGuiLayer.cpp" />
+    <ClCompile Include="src\Saddle\Layers\LayerManager.cpp" />
     <ClCompile Include="src\Saddle\Logging\Logger.cpp" />
     <ClCompile Include="src\Saddle\Objects\Component.cpp" />
     <ClCompile Include="src\Saddle\Objects\Object.cpp" />
+    <ClCompile Include="src\Saddle\Objects\SaddleComponents.cpp" />
     <ClCompile Include="src\Saddle\PassedArgs.cpp" />
     <ClCompile Include="src\Saddle\Scenes\Scene.cpp" />
     <ClCompile Include="src\Saddle\Windows\Window.cpp" />

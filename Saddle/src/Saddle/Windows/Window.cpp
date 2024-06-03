@@ -24,6 +24,7 @@ namespace Saddle {
 		m_width = width;
 		m_height = height;
 		m_flags = flags;
+		m_time = Time();
 
 		// Creating copy of properties and logging them
 		coreLogger.log("Initialising window with properties:\n", Logger::INFO, *this);
@@ -58,6 +59,8 @@ namespace Saddle {
 		success = true;
 		IMGUI_CHECKVERSION();
 		ImGuiLayer::m_imguicontext = ImGui::CreateContext();
+		ImGui::SetCurrentContext(ImGuiLayer::m_imguicontext);
+		success &= ImGui::GetCurrentContext() != 0;
 		ImGui::StyleColorsDark();
         success &= ImGui_ImplGlfw_InitForOpenGL(m_glfwwindow, true);
         success &= ImGui_ImplOpenGL3_Init();

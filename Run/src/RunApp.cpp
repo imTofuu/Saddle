@@ -10,7 +10,7 @@
 void Saddle::Start() {
 
 	Window* window = new Window("Saddle Editor", 1280, 720, 
-		SaddleWindowFlags_UseVsync | SaddleWindowFlags_IsBorderless);
+		SaddleWindowFlags_UseVsync);
 
 	ImGuiLayer& imGuiLayer = LayerManager::addLayer<ImGuiLayer>(0, 0);
 	
