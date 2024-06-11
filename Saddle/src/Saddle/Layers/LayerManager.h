@@ -14,11 +14,11 @@ namespace Saddle {
         template<class T> static T& addLayer(int i, const PassedArgs* args);
         template<class T> static T& getLayer();
 
-        static std::list<Layer*>& getLayers() { return *m_layers; }
+        static std::list<Layer*>& getLayers() { return m_layers; }
 
     private:
 
-        static std::list<Layer*>* m_layers;
+        static std::list<Layer*> m_layers;
 
     };
 

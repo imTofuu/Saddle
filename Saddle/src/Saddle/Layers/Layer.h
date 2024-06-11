@@ -11,10 +11,15 @@ namespace Saddle {
     public:
         virtual ~Layer() = default;
 
+        virtual void onLayerAdded();
         virtual void onLayerAdded(const PassedArgs* args) {}
+        virtual void onLayerRemoved();
         virtual void onLayerRemoved(const PassedArgs* args) {}
 
+        virtual void onUpdate();
         virtual void onUpdate(const PassedArgs* args) {}
+        virtual void onLateUpdate();
+        virtual void onLateUpdate(const PassedArgs* args) {}
 
     };
 

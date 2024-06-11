@@ -28,6 +28,7 @@ namespace Saddle {
 
 		while (!activeWindow->shouldStop()) {
 			activeWindow->update();	
+			Update();
 		}
 
 		delete& Scene::getActiveScene();

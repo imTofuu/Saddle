@@ -10,5 +10,6 @@ namespace Saddle {
 	};
 
 	void Start();
+	void Update();
 
 }

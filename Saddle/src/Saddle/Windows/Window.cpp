@@ -1,7 +1,5 @@
 #pragma warning ( disable : 4805 )
 
-#include <glad/glad.h>
-
 #include "Window.h"
 
 #include "../util/Time.h"
@@ -9,11 +7,10 @@
 #include "../EventDispatcher.h"
 #include "../Logging/Logger.h"
 #include "../Layers/LayerManager.h"
-#include "../Layers/ImGuiLayer.h"
+#include "../Layers/SaddleLayers.h"
 
 namespace Saddle {
 	Window* Window::m_activeWindow = nullptr;
-	ImGuiLayer imguilayer;
 
 	Window::Window(const std::string& title, int width, int height, uint64_t flags = 0) {
 		if (!m_activeWindow) m_activeWindow = this;
@@ -50,21 +47,15 @@ namespace Saddle {
 		coreLogger.log("GLFW initialised", Logger::DEBUG);
 
 		// Validating glad
-		success = true;
-		success &= gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		SDL_CORE_ASSERT(success, "Failed to load glad");
+		PassedArgs args;
+		args.next(glfwGetProcAddress);
+		LayerManager::addLayer<GameLayer>(0, &args);
 		coreLogger.log("glad loaded", Logger::DEBUG);
 
 		// Validating imgui
-		success = true;
-		IMGUI_CHECKVERSION();
-		ImGuiLayer::m_imguicontext = ImGui::CreateContext();
-		ImGui::SetCurrentContext(ImGuiLayer::m_imguicontext);
-		success &= ImGui::GetCurrentContext() != 0;
-		ImGui::StyleColorsDark();
-        success &= ImGui_ImplGlfw_InitForOpenGL(m_glfwwindow, true);
-        success &= ImGui_ImplOpenGL3_Init();
-		SDL_CORE_ASSERT(success, "Failed to load imgui");
+		PassedArgs args;
+		args.next(m_glfwwindow);
+		LayerManager::addLayer<CoreGuiLayer>(0, &args);
 		coreLogger.log("imgui loaded", Logger::DEBUG);
 
 		glfwSwapInterval(flags & SaddleWindowFlags_UseVsync);
@@ -87,7 +78,7 @@ namespace Saddle {
 		glfwPollEvents();
 
 		for(auto & layer : LayerManager::getLayers()) {
-			layer->onUpdate(0);
+			layer->onUpdate();
 		}
 
 		glfwSwapBuffers(m_glfwwindow);
