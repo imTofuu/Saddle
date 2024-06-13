@@ -12,7 +12,6 @@ namespace Saddle {
 			& scale = getOrCreateVector3("scale");
 
 		std::string toString(int indents) const override;
-		static std::string id() { return "Transform"; }
 
 		TransformComponent(Object& object) : Component(object) {}
 
@@ -24,10 +23,7 @@ namespace Saddle {
 			transform(addDependency<TransformComponent>()), Component(object) {}
 
 		std::string toString(int indents) const override;
-		static std::string id() { return "Sprite"; }
-
 		
-
 	private:
 
 		TransformComponent& transform;

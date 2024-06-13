@@ -2,6 +2,9 @@
 
 #include "../Logging/Loggable.h"
 #include <unordered_map>
+#include <vector>
+
+#include "../Scenes/Scene.h"
 
 #include "../EventDispatcher.h"
 
@@ -18,72 +21,36 @@ namespace Saddle {
 	class SDL_API Object : public Loggable {
 	public:
 
-		/**
-		 * \brief Adds a component to the object.
-		 * 
-		 * \tparam T The type of component. Component types must have a static
-		 * member std::string id() that returns a unique id and must extend
-		 * Component.
-		 * 
-		 * \return A reference to the added component.
-		*/
 		template<class T> T& addComponent();
-
-		/**
-		 * \brief Gets a component from the object.
-		 * 
-		 * \tparam T The type of component. Component types must have a static
-		 * member std::string id() that returns a unique id and must extend
-		 * Component.
-		 * 
-		 * \return A reference to the component, if the object has it. If the
-		 * object does not have a component of type T an exception will be
-		 * thrown.
-		 * 
-		 * TODO: test alternative method that doesn't require id() method
-		 * (dynamic casting)
-		*/
 		template<class T> T& getComponent();
-
-		/**
-		 * \brief Removes a component from the object.
-		 * 
-		 * \tparam T The type of component. Component types must have a static
-		 * member std::string id() that returns a unique id and must extend
-		 * Component.
-		 * 
-		 * \return Remove success.
-		*/
+		std::vector<Component&> getComponents() { return m_components.get(); }
+		std::vector<const Component&> getComponents() const { return m_components.getConst(); }
+		template<class T> static std::vector<T&> getAllComponents();
 		template<class T> bool removeComponent();
-
-		/**
-		 * \brief Checks if the object has a component of type T.
-		 * 
-		 * \tparam T The type of component. Component types must have a static
-		 * member std::String id() that returns a unique id and must extend
-		 * Component.
-		 * 
-		 * \return If the object has a component of type T.
-		*/
 		template<class T> bool hasComponent();
+		template<class T> static bool componentIs(Component* component);
 
+		Scene& getScene() { return m_scene; }
+		const Scene& getScene() const { return m_scene; }
 
 		/**
 		 * \return The name of the scene.
 		*/
-		std::string getName() const { return *m_name; }
+		std::string getName() const { return m_name; }
 
 		std::string toString(int indents) const override;
 
 	private:
-		Object() : Object("Object") {}
-		Object(std::string name);
+		Object(Scene& scene) : Object("Object", scene) {}
+		Object(std::string name, Scene& scene) : m_scene(scene), m_name(name) {}
 
 		template<class T> T& addComponentAsDependency();
 
-		std::string* m_name;
+		Scene& m_scene;
 
-		std::unordered_map<std::string, Component*>* m_components;
+		std::string m_name;
+
+		ObjectList<Component> m_components;
 
 		friend class Scene;
 		friend class Component;
@@ -95,7 +62,7 @@ namespace Saddle {
 	template<class T>
 	T& Object::addComponent() {
 		T* component = new T(*this);
-		m_components->emplace(T::id(), component);
+		m_components.add(*component);
 		EventDispatcher::getMainDispatcher().dispatchCreated(component);
 		return *component;
 	}
@@ -109,9 +76,29 @@ namespace Saddle {
 
 	template<class T>
 	T& Object::getComponent() {
-		auto iter = m_components->find(T::id());
-		SDL_CORE_ASSERT(iter != m_components.end(), "Object does not contain component.")
-		return *(T*)m_components->at(T::id());
+		for(auto & component : m_components.get()) {
+			T* newType  = dynamic_cast<T*>(&component);
+			if(newType != 0) return newType;
+		}
+		SDL_CORE_ASSERT(false, "Object does not contain component of type T");
+	}
+	
+	template<class T>
+	std::vector<T&> Object::getAllComponents() {
+		std::vector<T&> components;
+		for(auto * scene : Scene::getAllScenes()) {
+			for(auto * object : scene.getObjects()) {
+				for(auto & pair : object.getComponents()) {
+					if(componentIs<T>(pair.second)) components.push_back(*pair.second)
+				}
+			}
+		}
+		return components;
+	}
+
+	template<class T>
+	bool Object::componentIs(Component* component) {
+		return dynamic_cast<T*>(component) != 0;
 	}
 
 	template<class T>
@@ -123,14 +110,17 @@ namespace Saddle {
 			return false;
 		}
 
-		auto iter = m_components.find(component.id());
-		m_components.erase(iter);
+		m_components.remove(component);
 
 		return true;
 	}
 
 	template<class T>
 	bool Object::hasComponent() {
-		return m_components.find(T::id()) != m_components.end();
+		for(auto & component : m_components.get()) {
+			T* newType = dynamic_cast<T*>(&component);
+			if(newType != 0) return true;
+		}
+		return false;
 	}
 }

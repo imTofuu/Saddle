@@ -9,6 +9,8 @@
 #include "../Layers/LayerManager.h"
 #include "../Layers/SaddleLayers.h"
 
+#include "../Scenes/Scene.h"
+
 namespace Saddle {
 	Window* Window::m_activeWindow = nullptr;
 
@@ -55,7 +57,7 @@ namespace Saddle {
 		// Validating imgui
 		PassedArgs args;
 		args.next(m_glfwwindow);
-		LayerManager::addLayer<CoreGuiLayer>(0, &args);
+		LayerManager::addLayer<CoreGuiLayer>(1, &args);
 		coreLogger.log("imgui loaded", Logger::DEBUG);
 
 		glfwSwapInterval(flags & SaddleWindowFlags_UseVsync);
@@ -71,9 +73,6 @@ namespace Saddle {
 	void Window::update() {
 
 		frameTimer.start();
-
-		glClearColor(0, 0, 0, 1);
-		glClear(GL_COLOR_BUFFER_BIT);
 
 		glfwPollEvents();
 

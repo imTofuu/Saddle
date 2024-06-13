@@ -6,7 +6,7 @@ namespace Saddle {
     EventDispatcher* EventDispatcher::dispatcher = new EventDispatcher();
 
     void EventDispatcher::dispatchPreRender() {
-        for(auto * component : *(Component::m_components)) {
+        for(auto * component : Component::m_components) {
             component->preRender();
         }
     }
@@ -16,13 +16,13 @@ namespace Saddle {
     }
 
     void EventDispatcher::dispatchStart() {
-        for(auto * component : *(Component::m_components)) {
+        for(auto * component : Component::m_components) {
             component->start();
         }
     }
 
     void EventDispatcher::dispatchUpdate(double delta) {
-        for(auto * component : *(Component::m_components)) {
+        for(auto * component : Component::m_components) {
             component->update(delta);
         }
     }
