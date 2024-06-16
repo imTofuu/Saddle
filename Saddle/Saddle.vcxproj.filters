@@ -34,13 +34,16 @@
     <ClInclude Include="src\Saddle\Inspectable.h">
       <Filter>Saddle</Filter>
     </ClInclude>
-    <ClInclude Include="src\Saddle\Layers\ImGuiLayer.h">
+    <ClInclude Include="src\Saddle\Layers\CoreGuiItem.h">
       <Filter>Saddle\Layers</Filter>
     </ClInclude>
     <ClInclude Include="src\Saddle\Layers\Layer.h">
       <Filter>Saddle\Layers</Filter>
     </ClInclude>
     <ClInclude Include="src\Saddle\Layers\LayerManager.h">
+      <Filter>Saddle\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Saddle\Layers\SaddleLayers.h">
       <Filter>Saddle\Layers</Filter>
     </ClInclude>
     <ClInclude Include="src\Saddle\Logging\Loggable.h">
@@ -76,6 +79,9 @@
     <ClInclude Include="src\Saddle\util\Color.h">
       <Filter>Saddle\util</Filter>
     </ClInclude>
+    <ClInclude Include="src\Saddle\util\ObjectList.h">
+      <Filter>Saddle\util</Filter>
+    </ClInclude>
     <ClInclude Include="src\Saddle\util\Time.h">
       <Filter>Saddle\util</Filter>
     </ClInclude>
@@ -93,10 +99,10 @@
     <ClCompile Include="src\Saddle\EventDispatcher.cpp">
       <Filter>Saddle</Filter>
     </ClCompile>
-    <ClCompile Include="src\Saddle\Layers\ImGuiLayer.cpp">
+    <ClCompile Include="src\Saddle\Layers\CoreGuiItem.cpp">
       <Filter>Saddle\Layers</Filter>
     </ClCompile>
-    <ClCompile Include="src\Saddle\Layers\LayerManager.cpp">
+    <ClCompile Include="src\Saddle\Layers\SaddleLayers.cpp">
       <Filter>Saddle\Layers</Filter>
     </ClCompile>
     <ClCompile Include="src\Saddle\Logging\Logger.cpp">
@@ -119,6 +125,9 @@
     </ClCompile>
     <ClCompile Include="src\Saddle\Windows\Window.cpp">
       <Filter>Saddle\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Saddle\util\ObjectList.cpp">
+      <Filter>Saddle\util</Filter>
     </ClCompile>
     <ClCompile Include="src\Saddle\util\Timer.cpp">
       <Filter>Saddle\util</Filter>

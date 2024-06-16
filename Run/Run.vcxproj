@@ -95,6 +95,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\EditorLayer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\EditorLayer.cpp" />
     <ClCompile Include="src\RunApp.cpp" />
   </ItemGroup>
   <ItemGroup>

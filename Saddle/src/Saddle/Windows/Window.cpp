@@ -55,7 +55,7 @@ namespace Saddle {
 		coreLogger.log("glad loaded", Logger::DEBUG);
 
 		// Validating imgui
-		PassedArgs args;
+		args = PassedArgs();
 		args.next(m_glfwwindow);
 		LayerManager::addLayer<CoreGuiLayer>(1, &args);
 		coreLogger.log("imgui loaded", Logger::DEBUG);

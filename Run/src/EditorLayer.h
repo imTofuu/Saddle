@@ -4,7 +4,7 @@
 
 namespace Saddle {
 
-    class EditorLayer : Layer {
+    class EditorLayer : public Layer {
     public:
 
         void onUpdate(const PassedArgs* args) override;

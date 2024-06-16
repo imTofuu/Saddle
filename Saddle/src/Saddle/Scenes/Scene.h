@@ -31,8 +31,8 @@ namespace Saddle {
         static Scene& getActiveScene() { return *m_activeScene; }
         static void setActiveScene(Scene* scene) { m_activeScene = scene; }
 
-        const std::vector<Object&>& getObjects() { return m_sceneObjects.get(); }
-        const std::vector<const Object&>& getObjects() const { return m_sceneObjects.getConst(); }
+        const std::vector<Object*>& getObjects() { return m_sceneObjects.get(); }
+        const std::vector<const Object*>& getObjects() const { return m_sceneObjects.getConst(); }
 
         static const std::vector<Scene&>& getAllScenes() { return m_scenes; }
 

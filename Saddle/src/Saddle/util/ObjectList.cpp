@@ -3,7 +3,7 @@
 namespace Saddle {
 
     template<class T>
-    void ObjectList<T>::remove(T& obj) {
+    void ObjectList<T>::remove(T* const obj) {
         auto it = list.begin();
         int i = 0;
 
