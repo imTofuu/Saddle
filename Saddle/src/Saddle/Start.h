@@ -5,5 +5,5 @@ extern void Saddle::Update();
 
 int main(int argc, char** argv) {
 	Saddle::Application app;
-	app.Run(Saddle::Start);
+	app.Run(Saddle::Start, Saddle::Update);
 }

@@ -131,6 +131,7 @@
     <ClCompile Include="src\Saddle\Application.cpp" />
     <ClCompile Include="src\Saddle\EventDispatcher.cpp" />
     <ClCompile Include="src\Saddle\Layers\CoreGuiItem.cpp" />
+    <ClCompile Include="src\Saddle\Layers\LayerManager.cpp" />
     <ClCompile Include="src\Saddle\Layers\SaddleLayers.cpp" />
     <ClCompile Include="src\Saddle\Logging\Logger.cpp" />
     <ClCompile Include="src\Saddle\Objects\Component.cpp" />

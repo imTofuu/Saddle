@@ -10,8 +10,8 @@
 
 void Saddle::Start() {
 
-	Window* window = new Window("Saddle Editor", 1280, 720, 
-		SaddleWindowFlags_UseVsync);
+	Window* window = new Window("Saddle Editor", 1920, 1080, 
+		0);
 
 	LayerManager::addLayer<EditorLayer>(0, 0);
 
@@ -21,7 +21,7 @@ void Saddle::Start() {
 
 void Saddle::Update() {
 
-	CoreGuiItem item("Statistics");
+	CoreGuiItem item("hello");
 	item.text("ergsdf");
 
 }

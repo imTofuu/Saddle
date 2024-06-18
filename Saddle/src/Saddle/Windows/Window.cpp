@@ -1,5 +1,7 @@
 #pragma warning ( disable : 4805 )
 
+#include <glad/glad.h>
+
 #include "Window.h"
 
 #include "../util/Time.h"
@@ -44,26 +46,29 @@ namespace Saddle {
 			flags & (SaddleWindowFlags_IsFullscreen | SaddleWindowFlags_IsBorderless) ? 
 				glfwGetPrimaryMonitor() : 0, 0);
 		success &= m_glfwwindow != 0;
+		glfwSwapInterval(0);
 		glfwMakeContextCurrent(m_glfwwindow);
+		if (flags & SaddleWindowFlags_StartMaximised) glfwMaximizeWindow(m_glfwwindow);
 		SDL_CORE_ASSERT(success, "Failed to initialise GLFW");
 		coreLogger.log("GLFW initialised", Logger::DEBUG);
 
 		// Validating glad
 		PassedArgs args;
-		args.next((void*)glfwGetProcAddress);
+		args.next(glfwGetProcAddress);
 		LayerManager::addLayer<GameLayer>(0, &args);
 		coreLogger.log("glad loaded", Logger::DEBUG);
 
 		// Validating imgui
 		args = PassedArgs();
 		args.next(m_glfwwindow);
-		LayerManager::addLayer<CoreGuiLayer>(1, &args);
+		LayerManager::addLayer<CoreGuiLayer>(0, &args);
 		coreLogger.log("imgui loaded", Logger::DEBUG);
 
-		glfwSwapInterval(flags & SaddleWindowFlags_UseVsync);
-		if (flags & SaddleWindowFlags_StartMaximised) glfwMaximizeWindow(m_glfwwindow);
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
 
-		coreLogger.log("Window created applied", Logger::DEBUG);
+		coreLogger.log("Window created", Logger::DEBUG);
 	}
 
 	static int framesThisSecond = 0;
@@ -75,6 +80,9 @@ namespace Saddle {
 		frameTimer.start();
 
 		glfwPollEvents();
+
+		glClearColor(0, 0, 0, 1);
+		glClear(GL_COLOR_BUFFER_BIT);
 
 		for(auto & layer : LayerManager::getLayers()) {
 			layer->onUpdate();

@@ -7,7 +7,9 @@
 
 namespace Saddle {
 
-	void Application::Run(void (*run)()) {
+	extern void Update();
+
+	void Application::Run(void (*run)(), void (*update)()) {
 		Logger::initLoggers();
 
 		run();
@@ -27,8 +29,8 @@ namespace Saddle {
 		}
 
 		while (!activeWindow->shouldStop()) {
-			activeWindow->update();	
-			Update();
+			activeWindow->update();
+			update();
 		}
 
 		delete& Scene::getActiveScene();

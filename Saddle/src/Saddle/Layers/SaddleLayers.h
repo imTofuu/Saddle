@@ -3,9 +3,9 @@
 #include "../SaddleApi.h"
 #include "Layer.h"
 
-namespace ImGui {
-    class ImGuiContext;
-}
+#include <imgui.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
 
 namespace Saddle {
 
@@ -14,12 +14,13 @@ namespace Saddle {
 
         void onLayerAdded(const PassedArgs* args) override;
         void onUpdate() override;
-        void onLateUpdate() override;
         void onLayerRemoved() override;
+
+        static const ImGuiContext* getImGuiContext() { return m_imguicontext; }
     
     private:
 
-        static ImGui::ImGuiContext* m_imguicontext;
+        static ImGuiContext* m_imguicontext;
     };
 
     class SDL_API GameLayer : public Layer {

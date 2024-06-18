@@ -4,6 +4,7 @@
 namespace Saddle {
 
     Scene* Scene::m_activeScene = nullptr;
+    std::vector<Scene*> Scene::m_scenes = std::vector<Scene*>();
 
     Scene::Scene(std::string name) {
         this->m_name = name;

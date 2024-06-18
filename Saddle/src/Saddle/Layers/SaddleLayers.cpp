@@ -4,16 +4,12 @@
 
 #include <glad/glad.h>
 
-#include <imgui.h>
-#include <imgui_impl_glfw.h>
-#include <imgui_impl_opengl3.h>
-
 #include "../Objects/Object.h"
 #include "../Objects/SaddleComponents.h"
 
 namespace Saddle {
 
-    ImGui::ImGuiContext* CoreGuiLayer::m_imguicontext = nullptr;
+    ImGuiContext* CoreGuiLayer::m_imguicontext = nullptr;
 
     void CoreGuiLayer::onLayerAdded(const PassedArgs* args) {
         bool success = true;
@@ -23,7 +19,7 @@ namespace Saddle {
 		success &= ImGui::GetCurrentContext() != 0;
 		ImGui::StyleColorsDark();
         success &= ImGui_ImplGlfw_InitForOpenGL((GLFWwindow*)((*args)[0]), true);
-        success &= ImGui_ImplOpenGL3_Init();
+        success &= ImGui_ImplOpenGL3_Init("#version 130");
 		SDL_CORE_ASSERT(success, "Failed to load imgui");
         m_imguicontext = ImGui::CreateContext();
     }
@@ -31,12 +27,9 @@ namespace Saddle {
     void CoreGuiLayer::onUpdate() {
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-    }
-
-    void CoreGuiLayer::onLateUpdate() {
         ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
     }
 
     void CoreGuiLayer::onLayerRemoved() {
@@ -46,15 +39,12 @@ namespace Saddle {
 
     void GameLayer::onLayerAdded(const PassedArgs* args) {
         bool success = true;
-        GLADloadproc proc = *(GLADloadproc*)(*args)[0];
+        GLADloadproc proc = (GLADloadproc)((*args)[0]);
         success &= gladLoadGLLoader(proc);
         SDL_CORE_ASSERT(success, "Failed to load glad");
     }
 
     void GameLayer::onUpdate() {
-        glClearColor(0, 0, 0, 1);
-		glClear(GL_COLOR_BUFFER_BIT);
-
         std::vector<SpriteComponent*> sprites = Object::getAllComponents<SpriteComponent>();
         for(SpriteComponent * sprite : sprites) {
             if(&sprite->getObject().getScene() == &Scene::getActiveScene()) {
