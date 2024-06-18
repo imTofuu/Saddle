@@ -22,7 +22,7 @@ namespace Saddle {
     public:
         ~Scene();
 
-        Object& addObject() { return addObject("Object (" + m_sceneObjects.size()); }
+        Object& addObject() { return addObject("Object"); }
         Object& addObject(std::string name);
 
         static Scene& createScene() { return createScene("Scene"); }
@@ -31,10 +31,10 @@ namespace Saddle {
         static Scene& getActiveScene() { return *m_activeScene; }
         static void setActiveScene(Scene* scene) { m_activeScene = scene; }
 
-        const std::vector<Object*>& getObjects() { return m_sceneObjects.get(); }
-        const std::vector<const Object*>& getObjects() const { return m_sceneObjects.getConst(); }
+        std::vector<Object*> getObjects() { return m_sceneObjects.get(); }
+        std::vector<const Object*> getObjects() const { return m_sceneObjects.getConst(); }
 
-        static const std::vector<Scene&>& getAllScenes() { return m_scenes; }
+        static const std::vector<Scene*>& getAllScenes() { return m_scenes; }
 
 
         std::string getName() const { return m_name; }
@@ -49,7 +49,7 @@ namespace Saddle {
         std::string m_name;
 
         static Scene* m_activeScene;
-        static std::vector<Scene&> m_scenes;
+        static std::vector<Scene*> m_scenes;
 
         ObjectList<Object> m_sceneObjects;
 

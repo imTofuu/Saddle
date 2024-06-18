@@ -38,7 +38,7 @@ namespace Saddle {
         }
         std::cout << color << "[" << getAlias() << "] " << message << "\033[0m" << std::endl;
         if (severity == Saddle::Logger::FATAL)
-            #ifndef LAPTOP
+            #ifdef SDL_PLATFORM_WINDOWS
                 __debugbreak()
             #endif
             ;

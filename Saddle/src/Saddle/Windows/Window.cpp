@@ -50,7 +50,7 @@ namespace Saddle {
 
 		// Validating glad
 		PassedArgs args;
-		args.next(glfwGetProcAddress);
+		args.next((void*)glfwGetProcAddress);
 		LayerManager::addLayer<GameLayer>(0, &args);
 		coreLogger.log("glad loaded", Logger::DEBUG);
 

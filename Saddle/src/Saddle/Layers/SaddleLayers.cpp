@@ -8,6 +8,9 @@
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 
+#include "../Objects/Object.h"
+#include "../Objects/SaddleComponents.h"
+
 namespace Saddle {
 
     ImGui::ImGuiContext* CoreGuiLayer::m_imguicontext = nullptr;
@@ -46,6 +49,18 @@ namespace Saddle {
         GLADloadproc proc = *(GLADloadproc*)(*args)[0];
         success &= gladLoadGLLoader(proc);
         SDL_CORE_ASSERT(success, "Failed to load glad");
+    }
+
+    void GameLayer::onUpdate() {
+        glClearColor(0, 0, 0, 1);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+        std::vector<SpriteComponent*> sprites = Object::getAllComponents<SpriteComponent>();
+        for(SpriteComponent * sprite : sprites) {
+            if(&sprite->getObject().getScene() == &Scene::getActiveScene()) {
+                
+            }
+        }
     }
 
 }

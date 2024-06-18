@@ -23,9 +23,9 @@ namespace Saddle {
 
 		template<class T> T& addComponent();
 		template<class T> T& getComponent();
-		std::vector<Component&> getComponents() { return m_components.get(); }
-		std::vector<const Component&> getComponents() const { return m_components.getConst(); }
-		template<class T> static std::vector<T&> getAllComponents();
+		std::vector<Component*> getComponents() { return m_components.get(); }
+		std::vector<const Component*> getComponents() const { return m_components.getConst(); }
+		template<class T> static std::vector<T*> getAllComponents();
 		template<class T> bool removeComponent();
 		template<class T> bool hasComponent();
 		template<class T> static bool componentIs(Component* component);
@@ -62,7 +62,7 @@ namespace Saddle {
 	template<class T>
 	T& Object::addComponent() {
 		T* component = new T(*this);
-		m_components.add(*component);
+		m_components.add(component);
 		EventDispatcher::getMainDispatcher().dispatchCreated(component);
 		return *component;
 	}
@@ -84,12 +84,12 @@ namespace Saddle {
 	}
 	
 	template<class T>
-	std::vector<T&> Object::getAllComponents() {
-		std::vector<T&> components;
+	std::vector<T*> Object::getAllComponents() {
+		std::vector<T*> components;
 		for(auto * scene : Scene::getAllScenes()) {
-			for(auto * object : scene.getObjects()) {
-				for(auto & pair : object.getComponents()) {
-					if(componentIs<T>(pair.second)) components.push_back(*pair.second)
+			for(auto * object : scene->getObjects()) {
+				for(auto * component : object->getComponents()) {
+					if(componentIs<T>(component)) components.push_back((T*)component);
 				}
 			}
 		}

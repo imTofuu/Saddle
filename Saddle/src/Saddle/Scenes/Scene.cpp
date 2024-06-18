@@ -18,16 +18,16 @@ namespace Saddle {
     }
 
     Object& Scene::addObject(std::string name) {
-        Object& object = *(new Object(name, *this));
+        Object* object = new Object(name, *this);
         m_sceneObjects.add(object);
 
-        return object;
+        return *object;
     }
 
     Scene& Scene::createScene(std::string name) {
-        Scene& scene = *(new Scene(name));
+        Scene* scene = new Scene(name);
         m_scenes.push_back(scene);
-        return scene;
+        return *scene;
     }
 
     std::string Scene::toString(int indents) const {

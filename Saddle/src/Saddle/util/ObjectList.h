@@ -10,17 +10,17 @@ namespace Saddle {
     class SDL_API ObjectList {
     public:
 
-        const std::vector<T*>& get() { return list; }
-        const std::vector<const T*>& getConst() const { return constList; }
+        std::vector<T*> get() { return list; }
+        std::vector<const T*> getConst() const { return constList; }
 
         void add(T* obj) { list.push_back(obj); constList.push_back(obj); }
         void remove(T* obj);
         void remove(int i);
 
-        size_t size() const { return list.size(); }
+        std::size_t size() const { return list.size(); }
 
-        T& operator[](int i) { return list[i]; }
-        const T& operator[](int i) const { return constList[i]; }
+        T& operator[](int i) { return *list[i]; }
+        const T& operator[](int i) const { return *constList[i]; }
 
     private:
         std::vector<T*> list;
