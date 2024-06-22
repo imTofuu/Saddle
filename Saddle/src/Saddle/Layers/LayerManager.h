@@ -3,6 +3,7 @@
 #include "../SaddleApi.h"
 
 #include "Layer.h"
+#include "../Logging/Logger.h"
 
 #include <list>
 

@@ -21,7 +21,9 @@ void Saddle::Start() {
 
 void Saddle::Update() {
 
-	CoreGuiItem item("hello");
+	CoreGuiItem item("anything");
 	item.text("ergsdf");
+	item.text("anything else");
+	item.text("fgrhtjyhgfsedgh");
 
 }
