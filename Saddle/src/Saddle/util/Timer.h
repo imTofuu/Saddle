@@ -13,7 +13,7 @@ namespace Saddle {
 		void start() { m_startc = std::chrono::high_resolution_clock::now(); }
 
 		double current() const {
-			(std::chrono::high_resolution_clock::now() - m_startc).count() * 1000;
+			return (std::chrono::high_resolution_clock::now() - m_startc).count() * 1000;
 		}
 
 	private:

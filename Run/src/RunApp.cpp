@@ -10,12 +10,9 @@
 
 void Saddle::Start() {
 
-	Window* window = new Window("Saddle Editor", 1920, 1080, 
-		0);
+	Window* window = new Window("Saddle Editor", 1920, 1080, 0);
 
 	LayerManager::addLayer<EditorLayer>(0, 0);
-
-	Logger::getClientLogger().log(Logger::INFO, *Window::getActiveWindow());
 	
 }
 

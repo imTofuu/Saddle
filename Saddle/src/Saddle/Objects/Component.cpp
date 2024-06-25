@@ -12,7 +12,7 @@ namespace Saddle {
 
 	Component::~Component() {
 		for (auto& pair : m_exposedValues) {
-			delete pair.second;
+			delete reinterpret_cast<int*>(pair.second);
 		}
 	}
 

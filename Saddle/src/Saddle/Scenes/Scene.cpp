@@ -32,7 +32,7 @@ namespace Saddle {
     }
 
     std::string Scene::toString(int indents) const {
-        std::string str = std::string(indents, '    ') += getName();
+        std::string str = std::string(indents, (char)'  ') += getName();
         for (int i = 0; i < m_sceneObjects.size(); i++) {
             if (i == 0) str += ":\n";
             const Object& object = m_sceneObjects[i];
