@@ -102,6 +102,9 @@
     <ClCompile Include="src\Saddle\Layers\CoreGuiItem.cpp">
       <Filter>Saddle\Layers</Filter>
     </ClCompile>
+    <ClCompile Include="src\Saddle\Layers\LayerManager.cpp">
+      <Filter>Saddle\Layers</Filter>
+    </ClCompile>
     <ClCompile Include="src\Saddle\Layers\SaddleLayers.cpp">
       <Filter>Saddle\Layers</Filter>
     </ClCompile>
@@ -129,9 +132,5 @@
     <ClCompile Include="src\Saddle\util\ObjectList.cpp">
       <Filter>Saddle\util</Filter>
     </ClCompile>
-    <ClCompile Include="src\Saddle\util\Timer.cpp">
-      <Filter>Saddle\util</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Saddle\Layers\LayerManager.cpp" />
   </ItemGroup>
 </Project>

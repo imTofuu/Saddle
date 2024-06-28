@@ -5,7 +5,7 @@ GREEN="\033[0;32m"
 YELLOW="\033[0;33m"
 WHITE="\033[0m"
 
-PLATFORM="Linux-x64"
+PLATFORM="Mac-arm64"
 VERSION="1.0"
 BINPATH=$PLATFORM-$VERSION
 
@@ -175,7 +175,7 @@ else
     rm -rf ../bin/GLFW
     mkdir ../bin/GLFW
 
-    cmake -S . -B ../bin/GLFW
+    cmake -S . -B ../bin/GLFW -DGLFW_BUILD_COCOA=1 -DGLFW_LIBRARY_TYPE=STATIC
     success=$?
 
     cd ../bin/GLFW # / dependencies/bin/GLFW \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\|
@@ -257,12 +257,12 @@ else
 
     for i in $(find src -name \*.cpp) ; do
         name=$(basename $i)
-        g++ -std=c++11 -fPIC -c -obin/$BINPATH/${name%.*}.o $i -I../dependencies/GLFW/include -I../dependencies/glad/include -I../dependencies/imgui -I../dependencies/imgui/backends -DSDL_PLATFORM_LINUX -DSDL_DEBUG
+        g++ -std=c++11 -fPIC -c -obin/$BINPATH/${name%.*}.o $i -I../dependencies/GLFW/include -I../dependencies/glad/include -I../dependencies/imgui -I../dependencies/imgui/backends -DSDL_PLATFORM_MAC -DSDL_DEBUG
     done
 
     echo "Linking into single shared object..."
 
-    g++ -std=c++11 -shared -L../bin/$BINPATH -o ../bin/$BINPATH/libSaddle.so $(find bin/$BINPATH -name \*.o) -Wl,--whole-archive -lglad -lglfw3 -limgui -Wl,--no-whole-archive
+    g++ -std=c++11 -install_name $(pwd)/../bin/$BINPATH/libSaddle.dylib -shared -L../bin/$BINPATH -o ../bin/$BINPATH/libSaddle.dylib $(find bin/$BINPATH -name \*.o) -Wl,-all_load -lglad -lglfw3 -limgui -framework Cocoa -framework OpenGL -framework IOKit -framework QuartzCore
 
     printSuccess 1 0 "Generated Saddle library and linked into shared object"
 fi
@@ -288,7 +288,7 @@ else
 
     generateBinFolders .
 
-    g++ -std=c++11 -o ../bin/$BINPATH/run $(find src -name \*.cpp) -L../bin/$BINPATH -L. -lSaddle -I../Saddle/src -I../dependencies/GLFW/include -DSDL_PLATFORM_LINUX -DSDL_DEBUG
+    g++ -std=c++11 -o ../bin/$BINPATH/run $(find src -name \*.cpp) -L$(pwd)/../bin/$BINPATH -L. -lSaddle -I../Saddle/src -I../dependencies/GLFW/include -DSDL_PLATFORM_MAC -DSDL_DEBUG
 
     printSuccess 1 0 "Successfully generated executable"
 fi
@@ -313,5 +313,4 @@ while getopts "n" flag ; do
     esac
 done
 
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/tofu/Documents/Projects/Saddle/bin/$BINPATH"
 bin/$BINPATH/run

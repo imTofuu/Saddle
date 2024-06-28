@@ -30,9 +30,14 @@ namespace Saddle {
 
 		static Window* getActiveWindow() { return m_activeWindow; }
 
+		void close() { glfwDestroyWindow(m_glfwwindow); }
+		void resize(int x, int y) { glfwSetWindowSize(m_glfwwindow, x, y); }
+
 		std::string toString(int indents) const override;
 
 		const Time& getTimeInfo() { return m_time; }
+
+		inline bool shouldStop() const { return m_shouldstop; }
 
 	private:
 
@@ -41,8 +46,6 @@ namespace Saddle {
 		friend class Application;
 
 		void update();
-
-		inline bool shouldStop() const { return m_shouldstop; }
 
 		static Window* m_activeWindow;
 		GLFWwindow* m_glfwwindow;

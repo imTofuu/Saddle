@@ -19,7 +19,7 @@ namespace Saddle {
 		success &= ImGui::GetCurrentContext() != 0;
 		ImGui::StyleColorsDark();
         success &= ImGui_ImplGlfw_InitForOpenGL((GLFWwindow*)((*args)[0]), true);
-        success &= ImGui_ImplOpenGL3_Init("#version 130");
+        success &= ImGui_ImplOpenGL3_Init("#version 150");
 		SDL_CORE_ASSERT(success, "Failed to load imgui");
         m_imguicontext = ImGui::CreateContext();
     }
