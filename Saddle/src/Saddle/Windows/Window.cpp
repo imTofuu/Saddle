@@ -48,8 +48,8 @@ namespace Saddle {
 			flags & (SaddleWindowFlags_IsFullscreen | SaddleWindowFlags_IsBorderless) ? 
 				glfwGetPrimaryMonitor() : 0, 0);
 		success &= m_glfwwindow != 0;
-		glfwSwapInterval(0);
 		glfwMakeContextCurrent(m_glfwwindow);
+		glfwSwapInterval(flags & SaddleWindowFlags_UseVsync);
 		if (flags & SaddleWindowFlags_StartMaximised) glfwMaximizeWindow(m_glfwwindow);
 		SDL_CORE_ASSERT(success, "Failed to initialise GLFW");
 		coreLogger.log("GLFW initialised", Logger::DEBUG);
@@ -95,6 +95,7 @@ namespace Saddle {
 		m_shouldstop = glfwWindowShouldClose(m_glfwwindow);
 
 		m_time.delta = frameTimer.current();
+		framesThisSecond++;
 		if(fpsTimer.current() >= 1000) {
 			m_time.fls = framesThisSecond;
 			framesThisSecond = 0;

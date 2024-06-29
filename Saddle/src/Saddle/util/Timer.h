@@ -12,8 +12,9 @@ namespace Saddle {
 
 		void start() { m_startc = std::chrono::high_resolution_clock::now(); }
 
-		double current() const {
-			return (std::chrono::high_resolution_clock::now() - m_startc).count() * 1000;
+		float current() const {
+			float milliseconds = (std::chrono::high_resolution_clock::now() - m_startc).count();
+			return milliseconds / 1000000;
 		}
 
 	private:
