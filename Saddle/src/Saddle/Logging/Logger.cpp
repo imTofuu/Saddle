@@ -2,6 +2,8 @@
 
 #include "Loggable.h"
 
+#include "../Windows/Window.h"
+
 namespace Saddle {
     Logger* Logger::m_clientLogger = nullptr;
     Logger* Logger::m_coreLogger = nullptr;
@@ -40,6 +42,8 @@ namespace Saddle {
         if (severity == Saddle::Logger::FATAL)
             #ifdef SDL_PLATFORM_WINDOWS
                 __debugbreak()
+            #else
+                Window::getActiveWindow()->close();
             #endif
             ;
     }
