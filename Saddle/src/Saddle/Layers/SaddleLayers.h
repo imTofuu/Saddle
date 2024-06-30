@@ -9,6 +9,9 @@
 
 namespace Saddle {
 
+    class VertexArray;
+    class ShaderProgram;
+
     class SDL_API CoreGuiLayer : public Layer {
     public:
 
@@ -21,6 +24,7 @@ namespace Saddle {
     private:
 
         static ImGuiContext* m_imguicontext;
+
     };
 
     class SDL_API GameLayer : public Layer {
@@ -28,6 +32,11 @@ namespace Saddle {
 
         void onLayerAdded(const PassedArgs* args) override;
         void onUpdate() override;
+
+    private:
+
+        VertexArray* vertexArray;
+        ShaderProgram* shaderProgram;
     };
 
 }

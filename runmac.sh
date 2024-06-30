@@ -104,7 +104,9 @@ clearCache() {
 
 printSection "Creating new library directories..."
 
-while getopts "c" flag ; do
+useVsync=0
+
+while getopts "cv" flag ; do
     case $flag in
         c) 
             clearCache dependencies/glad
@@ -113,6 +115,9 @@ while getopts "c" flag ; do
             clearCache Saddle
             clearCache Run
             clearCache .
+        ;;
+        v)
+            useVsync=1
         ;;
     esac
 done
@@ -288,7 +293,7 @@ else
 
     generateBinFolders .
 
-    g++ -std=c++11 -o ../bin/$BINPATH/run $(find src -name \*.cpp) -L$(pwd)/../bin/$BINPATH -L. -lSaddle -I../Saddle/src -I../dependencies/GLFW/include -DSDL_PLATFORM_MAC -DSDL_DEBUG
+    g++ -std=c++11 -g -o ../bin/$BINPATH/run $(find src -name \*.cpp) -L$(pwd)/../bin/$BINPATH -L. -lSaddle -I../Saddle/src -I../dependencies/GLFW/include -DSDL_PLATFORM_MAC -DSDL_DEBUG -DSDL_USE_VSYNC=$useVsync
 
     printSuccess 1 0 "Successfully generated executable"
 fi

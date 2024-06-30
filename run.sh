@@ -104,7 +104,9 @@ clearCache() {
 
 printSection "Creating new library directories..."
 
-while getopts "c" flag ; do
+useVsync=0
+
+while getopts "cv" flag ; do
     case $flag in
         c) 
             clearCache dependencies/glad
@@ -114,6 +116,9 @@ while getopts "c" flag ; do
             clearCache Run
             clearCache .
         ;;
+	    v)
+            useVsync=1
+	    ;;
     esac
 done
 
@@ -257,7 +262,7 @@ else
 
     for i in $(find src -name \*.cpp) ; do
         name=$(basename $i)
-        g++ -std=c++11 -fPIC -c -obin/$BINPATH/${name%.*}.o $i -I../dependencies/GLFW/include -I../dependencies/glad/include -I../dependencies/imgui -I../dependencies/imgui/backends -DSDL_PLATFORM_LINUX -DSDL_DEBUG
+        g++ -std=c++11 -fPIC -c -obin/$BINPATH/${name%.*}.o $i -I../dependencies/GLFW/include -I../dependencies/glad/include -I../dependencies/imgui -I../dependencies/imgui/backends -DSDL_PLATFORM_LINUX -DSDL_DEBUG -DSDL_USE_VSYNC=$useVsync
     done
 
     echo "Linking into single shared object..."

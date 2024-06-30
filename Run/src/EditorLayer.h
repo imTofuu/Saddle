@@ -15,7 +15,7 @@ namespace Saddle {
         int* m_width = new int(500);
         int* m_height = new int(500);
 
-        Window* m_window = new Window("Saddle Editor", 2560, 1664, SaddleWindowFlags_IsBorderless);
+        Window* m_window = new Window("Saddle Editor", 2560, 1664,  SaddleWindowFlags_IsFullscreen | SDL_USE_VSYNC);
 
         void makeDebugWindow();
         void makeStatsWindow();

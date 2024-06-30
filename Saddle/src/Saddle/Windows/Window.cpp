@@ -34,8 +34,8 @@ namespace Saddle {
 		bool success = true;
 		success &= glfwInit();
 		const GLFWvidmode* mode = 0;
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 		if(flags & SaddleWindowFlags_IsBorderless) {
 			const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 			glfwWindowHint(GLFW_RED_BITS, mode->redBits);
